@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8EED59CC1C40194500CB3223 /* Bellerophon.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EED59CB1C40194500CB3223 /* Bellerophon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8EED59D31C40194500CB3223 /* Bellerophon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EED59C81C40194500CB3223 /* Bellerophon.framework */; };
+		8EED59D81C40194500CB3223 /* BellerophonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EED59D71C40194500CB3223 /* BellerophonTests.swift */; };
+		8EED59E71C40196400CB3223 /* BPHelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EED59E31C40196400CB3223 /* BPHelperMethods.swift */; };
+		8EED59E81C40196400CB3223 /* BPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EED59E41C40196400CB3223 /* BPManager.swift */; };
+		8EED59E91C40196400CB3223 /* BPManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EED59E51C40196400CB3223 /* BPManagerProtocol.swift */; };
+		8EED59EA1C40196400CB3223 /* BPStatusProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EED59E61C40196400CB3223 /* BPStatusProtocol.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8EED59D41C40194500CB3223 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8EED59BF1C40194500CB3223 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8EED59C71C40194500CB3223;
+			remoteInfo = Bellerophon;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8EED59C81C40194500CB3223 /* Bellerophon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bellerophon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EED59CB1C40194500CB3223 /* Bellerophon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bellerophon.h; sourceTree = "<group>"; };
+		8EED59CD1C40194500CB3223 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EED59D21C40194500CB3223 /* BellerophonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BellerophonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EED59D71C40194500CB3223 /* BellerophonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellerophonTests.swift; sourceTree = "<group>"; };
+		8EED59D91C40194500CB3223 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EED59E31C40196400CB3223 /* BPHelperMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPHelperMethods.swift; sourceTree = "<group>"; };
+		8EED59E41C40196400CB3223 /* BPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPManager.swift; sourceTree = "<group>"; };
+		8EED59E51C40196400CB3223 /* BPManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPManagerProtocol.swift; sourceTree = "<group>"; };
+		8EED59E61C40196400CB3223 /* BPStatusProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPStatusProtocol.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8EED59C41C40194500CB3223 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EED59CF1C40194500CB3223 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EED59D31C40194500CB3223 /* Bellerophon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8EED59BE1C40194500CB3223 = {
+			isa = PBXGroup;
+			children = (
+				8EED59CA1C40194500CB3223 /* Bellerophon */,
+				8EED59D61C40194500CB3223 /* BellerophonTests */,
+				8EED59C91C40194500CB3223 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8EED59C91C40194500CB3223 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8EED59C81C40194500CB3223 /* Bellerophon.framework */,
+				8EED59D21C40194500CB3223 /* BellerophonTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8EED59CA1C40194500CB3223 /* Bellerophon */ = {
+			isa = PBXGroup;
+			children = (
+				8EED59E21C40196400CB3223 /* Sources */,
+				8EED59CB1C40194500CB3223 /* Bellerophon.h */,
+				8EED59CD1C40194500CB3223 /* Info.plist */,
+			);
+			path = Bellerophon;
+			sourceTree = "<group>";
+		};
+		8EED59D61C40194500CB3223 /* BellerophonTests */ = {
+			isa = PBXGroup;
+			children = (
+				8EED59D71C40194500CB3223 /* BellerophonTests.swift */,
+				8EED59D91C40194500CB3223 /* Info.plist */,
+			);
+			path = BellerophonTests;
+			sourceTree = "<group>";
+		};
+		8EED59E21C40196400CB3223 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8EED59E31C40196400CB3223 /* BPHelperMethods.swift */,
+				8EED59E41C40196400CB3223 /* BPManager.swift */,
+				8EED59E51C40196400CB3223 /* BPManagerProtocol.swift */,
+				8EED59E61C40196400CB3223 /* BPStatusProtocol.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8EED59C51C40194500CB3223 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EED59CC1C40194500CB3223 /* Bellerophon.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8EED59C71C40194500CB3223 /* Bellerophon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EED59DC1C40194500CB3223 /* Build configuration list for PBXNativeTarget "Bellerophon" */;
+			buildPhases = (
+				8EED59C31C40194500CB3223 /* Sources */,
+				8EED59C41C40194500CB3223 /* Frameworks */,
+				8EED59C51C40194500CB3223 /* Headers */,
+				8EED59C61C40194500CB3223 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Bellerophon;
+			productName = Bellerophon;
+			productReference = 8EED59C81C40194500CB3223 /* Bellerophon.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8EED59D11C40194500CB3223 /* BellerophonTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EED59DF1C40194500CB3223 /* Build configuration list for PBXNativeTarget "BellerophonTests" */;
+			buildPhases = (
+				8EED59CE1C40194500CB3223 /* Sources */,
+				8EED59CF1C40194500CB3223 /* Frameworks */,
+				8EED59D01C40194500CB3223 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8EED59D51C40194500CB3223 /* PBXTargetDependency */,
+			);
+			name = BellerophonTests;
+			productName = BellerophonTests;
+			productReference = 8EED59D21C40194500CB3223 /* BellerophonTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8EED59BF1C40194500CB3223 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Prolific Interactive";
+				TargetAttributes = {
+					8EED59C71C40194500CB3223 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					8EED59D11C40194500CB3223 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 8EED59C21C40194500CB3223 /* Build configuration list for PBXProject "Bellerophon" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8EED59BE1C40194500CB3223;
+			productRefGroup = 8EED59C91C40194500CB3223 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8EED59C71C40194500CB3223 /* Bellerophon */,
+				8EED59D11C40194500CB3223 /* BellerophonTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8EED59C61C40194500CB3223 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EED59D01C40194500CB3223 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8EED59C31C40194500CB3223 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EED59E91C40196400CB3223 /* BPManagerProtocol.swift in Sources */,
+				8EED59EA1C40196400CB3223 /* BPStatusProtocol.swift in Sources */,
+				8EED59E71C40196400CB3223 /* BPHelperMethods.swift in Sources */,
+				8EED59E81C40196400CB3223 /* BPManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EED59CE1C40194500CB3223 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EED59D81C40194500CB3223 /* BellerophonTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8EED59D51C40194500CB3223 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8EED59C71C40194500CB3223 /* Bellerophon */;
+			targetProxy = 8EED59D41C40194500CB3223 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		8EED59DA1C40194500CB3223 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8EED59DB1C40194500CB3223 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8EED59DD1C40194500CB3223 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Bellerophon/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.prolificinteractive.Bellerophon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		8EED59DE1C40194500CB3223 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Bellerophon/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.prolificinteractive.Bellerophon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		8EED59E01C40194500CB3223 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = BellerophonTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.prolificinteractive.BellerophonTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8EED59E11C40194500CB3223 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = BellerophonTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.prolificinteractive.BellerophonTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8EED59C21C40194500CB3223 /* Build configuration list for PBXProject "Bellerophon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EED59DA1C40194500CB3223 /* Debug */,
+				8EED59DB1C40194500CB3223 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8EED59DC1C40194500CB3223 /* Build configuration list for PBXNativeTarget "Bellerophon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EED59DD1C40194500CB3223 /* Debug */,
+				8EED59DE1C40194500CB3223 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8EED59DF1C40194500CB3223 /* Build configuration list for PBXNativeTarget "BellerophonTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EED59E01C40194500CB3223 /* Debug */,
+				8EED59E11C40194500CB3223 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8EED59BF1C40194500CB3223 /* Project object */;
+}

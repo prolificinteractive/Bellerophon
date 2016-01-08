@@ -126,7 +126,7 @@ If you wish to contribute to the project, fork this repo and submit a pull reque
 
 ## License ##
 
-Bellerophon is Copyright (c) 2015 Prolific Interactive. It may be redistributed under the terms specified in the [LICENSE](LICENSE.md) file.
+Bellerophon is Copyright (c) 2015 Prolific Interactive. It may be redistributed under the terms specified in the [LICENSE](LICENSE) file.
 
 ## Maintainers ##
 

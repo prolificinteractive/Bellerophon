@@ -8,6 +8,7 @@
 
 import Foundation
 import ObjectMapper
+import Bellerophon
 
 //{
 //    "apiInactive": false,

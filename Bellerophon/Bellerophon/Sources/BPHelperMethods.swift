@@ -9,22 +9,22 @@
 import Foundation
 import UIKit
 
-struct BellerophonHelperMethods {
+public struct BellerophonHelperMethods {
 
     // MARK: Helper Methods
-    static func screenSize() -> CGSize {
+    public static func screenSize() -> CGSize {
         return UIScreen.mainScreen().bounds.size
     }
 
-    static func screenFrame() -> CGRect {
+    public static func screenFrame() -> CGRect {
         return CGRectMake(0.0, 0.0, screenSize().width, screenSize().height)
     }
 
-    static func newWindow() -> UIWindow {
+    public static func newWindow() -> UIWindow {
         return UIWindow(frame: CGRectMake(0.0, 0.0, screenSize().width, screenSize().height))
     }
 
-    static func timerWithStatus(status: BellerophonStatusProtocol, target: AnyObject, selector: Selector) -> NSTimer {
+    public static func timerWithStatus(status: BellerophonStatusProtocol, target: AnyObject, selector: Selector) -> NSTimer {
         return NSTimer.scheduledTimerWithTimeInterval(
             status.retryInterval(),
             target: target,
@@ -34,7 +34,7 @@ struct BellerophonHelperMethods {
         )
     }
 
-    static func defaultBellerophonView(message: String, image: UIImage) -> UIView {
+    public static func defaultBellerophonView(message: String, image: UIImage) -> UIView {
         let view = UIView(frame: screenFrame())
 
         let imageView = UIImageView(frame: view.frame)

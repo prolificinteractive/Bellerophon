@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C692F419EF8EAA9A4693BFC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C29D0C65208BD37E4CBB251 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		8E0915ED1B88FDD500ED7FC4 /* BPHelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0915EC1B88FDD500ED7FC4 /* BPHelperMethods.swift */; };
-		8E0915EE1B88FDD500ED7FC4 /* BPHelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0915EC1B88FDD500ED7FC4 /* BPHelperMethods.swift */; };
+		4C692F419EF8EAA9A4693BFC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C29D0C65208BD37E4CBB251 /* Pods.framework */; };
 		8E0915F01B8903FB00ED7FC4 /* BellerophonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0915EF1B8903FB00ED7FC4 /* BellerophonModel.swift */; };
 		8E0915F11B8903FB00ED7FC4 /* BellerophonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0915EF1B8903FB00ED7FC4 /* BellerophonModel.swift */; };
 		8EF3B9BA1B88DA1B007A4E5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF3B9B91B88DA1B007A4E5D /* AppDelegate.swift */; };
@@ -18,12 +16,6 @@
 		8EF3B9C11B88DA1B007A4E5D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EF3B9C01B88DA1B007A4E5D /* Images.xcassets */; };
 		8EF3B9C41B88DA1B007A4E5D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EF3B9C21B88DA1B007A4E5D /* LaunchScreen.xib */; };
 		8EF3B9D01B88DA1B007A4E5D /* BellerophonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF3B9CF1B88DA1B007A4E5D /* BellerophonTests.swift */; };
-		8EF3B9DB1B88DCCA007A4E5D /* BPStatusProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF3B9DA1B88DCCA007A4E5D /* BPStatusProtocol.swift */; };
-		8EF3B9DC1B88DCCA007A4E5D /* BPStatusProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF3B9DA1B88DCCA007A4E5D /* BPStatusProtocol.swift */; };
-		8EF3B9DE1B88DEED007A4E5D /* BPManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF3B9DD1B88DEED007A4E5D /* BPManagerProtocol.swift */; };
-		8EF3B9DF1B88DEED007A4E5D /* BPManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF3B9DD1B88DEED007A4E5D /* BPManagerProtocol.swift */; };
-		8EF3B9E11B88DFB3007A4E5D /* BPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF3B9E01B88DFB3007A4E5D /* BPManager.swift */; };
-		8EF3B9E21B88DFB3007A4E5D /* BPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF3B9E01B88DFB3007A4E5D /* BPManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +30,6 @@
 
 /* Begin PBXFileReference section */
 		3FEDDAF70F6FE7454723AE6E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		8E0915EC1B88FDD500ED7FC4 /* BPHelperMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPHelperMethods.swift; sourceTree = "<group>"; };
 		8E0915EF1B8903FB00ED7FC4 /* BellerophonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellerophonModel.swift; sourceTree = "<group>"; };
 		8EF3B9B41B88DA1B007A4E5D /* Bellerophon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bellerophon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EF3B9B81B88DA1B007A4E5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,9 +41,6 @@
 		8EF3B9C91B88DA1B007A4E5D /* BellerophonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BellerophonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EF3B9CE1B88DA1B007A4E5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EF3B9CF1B88DA1B007A4E5D /* BellerophonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellerophonTests.swift; sourceTree = "<group>"; };
-		8EF3B9DA1B88DCCA007A4E5D /* BPStatusProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPStatusProtocol.swift; sourceTree = "<group>"; };
-		8EF3B9DD1B88DEED007A4E5D /* BPManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPManagerProtocol.swift; sourceTree = "<group>"; };
-		8EF3B9E01B88DFB3007A4E5D /* BPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPManager.swift; sourceTree = "<group>"; };
 		9C29D0C65208BD37E4CBB251 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF00D8CCFF78D904A17A0CB4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				8EF3B9B61B88DA1B007A4E5D /* Bellerophon */,
-				8EF3B9D91B88DBB8007A4E5D /* Sources */,
 				8EF3B9CC1B88DA1B007A4E5D /* BellerophonTests */,
 				8EF3B9B51B88DA1B007A4E5D /* Products */,
 				4CB44AE196BB6C123E8A0615 /* Pods */,
@@ -151,17 +138,6 @@
 				8EF3B9CE1B88DA1B007A4E5D /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		8EF3B9D91B88DBB8007A4E5D /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				8EF3B9DA1B88DCCA007A4E5D /* BPStatusProtocol.swift */,
-				8EF3B9DD1B88DEED007A4E5D /* BPManagerProtocol.swift */,
-				8EF3B9E01B88DFB3007A4E5D /* BPManager.swift */,
-				8E0915EC1B88FDD500ED7FC4 /* BPHelperMethods.swift */,
-			);
-			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,13 +293,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EF3B9DE1B88DEED007A4E5D /* BPManagerProtocol.swift in Sources */,
 				8EF3B9BC1B88DA1B007A4E5D /* ViewController.swift in Sources */,
 				8E0915F01B8903FB00ED7FC4 /* BellerophonModel.swift in Sources */,
-				8E0915ED1B88FDD500ED7FC4 /* BPHelperMethods.swift in Sources */,
 				8EF3B9BA1B88DA1B007A4E5D /* AppDelegate.swift in Sources */,
-				8EF3B9E11B88DFB3007A4E5D /* BPManager.swift in Sources */,
-				8EF3B9DB1B88DCCA007A4E5D /* BPStatusProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,11 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E0915F11B8903FB00ED7FC4 /* BellerophonModel.swift in Sources */,
-				8EF3B9DF1B88DEED007A4E5D /* BPManagerProtocol.swift in Sources */,
-				8EF3B9DC1B88DCCA007A4E5D /* BPStatusProtocol.swift in Sources */,
-				8E0915EE1B88FDD500ED7FC4 /* BPHelperMethods.swift in Sources */,
 				8EF3B9D01B88DA1B007A4E5D /* BellerophonTests.swift in Sources */,
-				8EF3B9E21B88DFB3007A4E5D /* BPManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +429,7 @@
 				INFOPLIST_FILE = Bellerophon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prolificinteractive.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_MODULE_NAME = BellerophonExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -474,6 +443,7 @@
 				INFOPLIST_FILE = Bellerophon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prolificinteractive.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_MODULE_NAME = BellerophonExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

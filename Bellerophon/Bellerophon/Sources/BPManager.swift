@@ -12,12 +12,12 @@ import UIKit
 public class BellerophonManager: NSObject {
 
     // MARK: Singleton instance
-    static let sharedInstance = BellerophonManager()
+    public static let sharedInstance = BellerophonManager()
 
     // MARK: Public properties
     public var killSwitchView: UIView!
-    var appStatus: BellerophonStatusProtocol?
-    weak var delegate: BellerophonManagerProtocol?
+    public var appStatus: BellerophonStatusProtocol?
+    public weak var delegate: BellerophonManagerProtocol?
 
     // MARK: Private properties
     private lazy var killSwitchWindow: UIWindow = {
@@ -32,7 +32,7 @@ public class BellerophonManager: NSObject {
     private var retryTimer: NSTimer?
 
     // MARK: Public Methods
-    func checkAppStatus() {
+    public func checkAppStatus() {
         assert(killSwitchView != nil, "The kill switch view has to be defined.")
 
         if self.requestPending {
@@ -52,7 +52,7 @@ public class BellerophonManager: NSObject {
         })
     }
 
-    func fetchAppStatus(completionHandler: (result: UIBackgroundFetchResult) -> ()) {
+    public func fetchAppStatus(completionHandler: (result: UIBackgroundFetchResult) -> ()) {
         self.delegate?.bellerophonStatus(self, completion: { (status, error) -> () in
             if let status = status {
                 self.handleAppStatus(status)

@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import AlamofireObjectMapper
+import Bellerophon
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtocol {
