@@ -1,26 +1,29 @@
 # BELLEROPHON #
 
+[![Travis build status](https://img.shields.io/travis/ProlificInteractive/Bellerophon.svg?style=flat-square)](https://travis-ci.org/ProlificInteractive/Bellerophon)
+[![Cocoapods Compatible](https://img.shields.io/cocoapods/v/Bellerophon.svg?style=flat-square)](https://img.shields.io/cocoapods/v/Bellerophon.svg)
+[![Platform](https://img.shields.io/cocoapods/p/Bellerophon.svg?style=flat-square)](http://cocoadocs.org/docsets/Bellerophon)
+[![Docs](https://img.shields.io/cocoapods/metrics/doc-percent/Bellerophon.svg?style=flat-square)](http://cocoadocs.org/docsets/Bellerophon)
+
 ![Bellerophon fighting Chimera](http://www1.artflakes.com/artwork/products/246494/poster/246494.jpg)
 
 Bellerophon is a hero of Greek mythology. He was *"the greatest hero and slayer of monsters, alongside Cadmus and Perseus, before the days of Heracles"*, and his greatest feat was killing the **Chimera**, a monster that Homer depicted with a lion's head, a goat's body, and a serpent's tail.
 
 Sometimes in a development phase, it happens for different reasons that the app available in the store has to be killed. It could be because it contains a major issue (crash, security breach...) or for a business decision (killing the app before a Sale starts, so users are not buying before the others for example).
 
-### What is this repository for? ###
+## Description ##
 
 Bellerophon is a Swift implementation of a protocol and convenient methods that allow you to either kill your app or force the users to update using the App Store. By implementing Bellerphon, you will be able to easily add the logic to present a kill state view in your app, or force users to update.
 
-#### Version ####
-Bellerophon is at version **1.0**
+## Requirements
 
+IDE, Tools etc. required for the project to run
 
-### How do I get set up? ###
-
-#### Installation ####
+## Installation ##
 
 TODO
 
-#### Configuration ####
+### Configuration ###
 
 In order to use Bellerophon, you'll have to follow these steps:
 
@@ -111,15 +114,21 @@ The specifications that we are using at Prolific Interactive are this one:
 ```
 
 
-#### How to test? ####
+### How to test? ###
 
 Currently there is not an easy way to test Bellerophon. The best way is either to force the response model from the API to return an API inactive state so you can see the kill switch, or use a web debugging proxy like [Charles](http://www.charlesproxy.com) to set a breakpoint on the endpoint and change the API response to deactivate the API.
 
-## LICENSE ##
+## Contributing ##
+
+To report a bug or enhancement request, feel free to file an issue under the respective heading.
+
+If you wish to contribute to the project, fork this repo and submit a pull request.
+
+## License ##
 
 Bellerophon is Copyright (c) 2015 Prolific Interactive. It may be redistributed under the terms specified in the [LICENSE](LICENSE.md) file.
 
-## Maintainers
+## Maintainers ##
 
 ![prolific](https://s3.amazonaws.com/prolificsitestaging/logos/Prolific_Logo_Full_Color.png)
 
