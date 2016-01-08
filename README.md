@@ -115,6 +115,10 @@ The specifications that we are using at Prolific Interactive are this one:
 
 Currently there is not an easy way to test Bellerophon. The best way is either to force the response model from the API to return an API inactive state so you can see the kill switch, or use a web debugging proxy like [Charles](http://www.charlesproxy.com) to set a breakpoint on the endpoint and change the API response to deactivate the API.
 
+### LICENSE ###
+
+Bellerophon is Copyright (c) 2015 Prolific Interactive. It may be redistributed under the terms specified in the [LICENSE](LICENSE.md) file.
+
 ### Who do I talk to? ###
 
 * Repo owner or admin
