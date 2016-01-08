@@ -26,7 +26,7 @@ In order to use Bellerophon, you'll have to follow these steps:
 
 1 - In your AppDelegate implementation file, import the project and register to the `BellerophonManagerProtocol`.
 
-```
+```swift
 class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtocol {
 	...
 }
@@ -34,14 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtoco
 
 2 - Implement and configure the Bellerophon shared manager by setting the delegate property and the kill view.
 
-```
+```swift
 BellerophonManager.sharedInstance.delegate = self
 BellerophonManager.sharedInstance.killSwitchView = <YOUR_VIEW>
 ```
 
 3 - Start the check the app status
 
-```
+```swift
 BellerophonManager.sharedInstance.checkAppStatus()
 ```
 
@@ -49,13 +49,13 @@ Here is for the Bellerophon basic implementation. Now you will need to create yo
 
 4 - Creates your model and make it conforms to `BellerophonStatusProtocol`.
 
-```
+```swift
 class BellerophonModel: BellerophonStatusProtocol { }
 ```
 
 5 - Implements the `BellerophonStatusProtocol` methods.
 
-```
+```swift
 @objc func apiInactive() -> Bool {
 	...
 }
@@ -75,7 +75,7 @@ class BellerophonModel: BellerophonStatusProtocol { }
 
 6 - Now that you have your model, you are ready to implement the `BellerophonManagerProtocol` methods in your App Delegate.
 
-```
+```swift
 func bellerophonStatus(manager: BellerophonManager, completion: (status: BellerophonStatusProtocol?, error: NSError?) -> ()) {
 	// MAKE API CALL
 	APIManager.GET() { (status, error)
