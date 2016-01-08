@@ -21,7 +21,17 @@ IDE, Tools etc. required for the project to run
 
 ## Installation ##
 
-TODO
+To use in your projects, simply add the following line to your Podfile:
+
+```bash
+pod 'Bellerophon'
+```
+
+You can then use `Bellerophon` by importing it into your files:
+
+```swift
+import Bellerophon
+```
 
 ### Configuration ###
 
