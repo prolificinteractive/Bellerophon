@@ -1,33 +1,123 @@
-# Xcode
-#
-build/
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata
+testcases_lilly_pulitzer/
+
+
+# global .gitignore
+# check out https://github.com/github/gitignore
+
+*~
+
+# vagrant 
+.vagrant/
+
+# files for xcode 5
 *.xccheckout
-*.moved-aside
-DerivedData
-*.hmap
-*.ipa
-*.xcuserstate
 
-# CocoaPods
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
-#
-# Pods/
+# Cocoapods
+Pods/
+Podfile.lock
 
-# Carthage
-#
-# Add this line if you want to avoid checking in source code from Carthage dependencies.
-# Carthage/Checkouts
+# Xcode Archives
+*.xcarchive
 
-Carthage/Build
+### random Mac/PC folder junk
+
+*DS_Store
+Thumbs.db
+._*
+
+
+### Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+
+### temporary files
+
+*.tmp
+*.bak
+
+
+### logs and dbs
+
+*.log
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+
+
+### compressed files
+### (unpack and commit uncompressed files)
+
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+
+### IDE files
+
+# TextMate:
+*.tmproj
+*.tmproject
+tmtags
+
+# BBEdit:
+*.bbprojectd
+
+# Eclipse:
+.project
+.classpath
+
+# IDEA Products: IntelliJ, PHPStorm
+*.iml
+*.ipr
+*.iws
+.idea/
+
+### Flash Dev
+
+*.air
+*.p12
+
+
+### Web Dev
+
+.sass-cache/
+.powenv
+
+### iOS/Mac dev
+
+*~.nib
+*.swp
+
+# files created by Xcode 3 or older
+*.pbxuser
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcclassmodel/
+
+# files created by Xcode 4
+xcuserdata/
+
+# build products
+*.build/
+build/
+DerivedData/
+
+# Appledoc
+docset-installed.txt
+
+### Android dev
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class

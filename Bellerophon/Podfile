@@ -1,0 +1,15 @@
+platform :ios, '8.0'
+
+source 'https://bitbucket.org/prolificinteractive/pibrary-ios'
+source 'https://github.com/CocoaPods/Specs.git'
+
+#Per pod basis warning inhibits? =>  use :inhibit_warnings => true
+inhibit_all_warnings!
+
+link_with 'Bellerophon'
+
+use_frameworks!
+
+#Pods list
+pod 'Alamofire', '~> 1.3'
+pod 'AlamofireObjectMapper', '~> 0.7'
