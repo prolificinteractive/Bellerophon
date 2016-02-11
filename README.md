@@ -1,7 +1,7 @@
 # BELLEROPHON #
 
 [![Travis build status](https://img.shields.io/travis/ProlificInteractive/Bellerophon.svg?style=flat-square)](https://travis-ci.org/ProlificInteractive/Bellerophon)
-[![Cocoapods Compatible](https://img.shields.io/cocoapods/v/Bellerophon.svg?style=flat-square)](https://img.shields.io/cocoapods/v/Bellerophon.svg)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Bellerophon.svg?style=flat-square)](https://img.shields.io/cocoapods/v/Bellerophon.svg)
 [![Platform](https://img.shields.io/cocoapods/p/Bellerophon.svg?style=flat-square)](http://cocoadocs.org/docsets/Bellerophon)
 [![Docs](https://img.shields.io/cocoapods/metrics/doc-percent/Bellerophon.svg?style=flat-square)](http://cocoadocs.org/docsets/Bellerophon)
 
