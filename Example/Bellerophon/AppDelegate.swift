@@ -50,11 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtoco
 
     @objc func bellerophonStatus(manager: BellerophonManager, completion: (status: BellerophonStatusProtocol?, error: NSError?) -> ()) {
         // MAKE API CALL
-        Alamofire.request(.GET, "http://dev1.lilly.api.prolific.io/status", parameters: nil, encoding: .JSON, headers: nil)
-            .responseObject { (response: 💩?, error: ErrorType?) in
-                // Casting ErrorType to NSError to keep Objective-C compatibility
-                let nsError: NSError? = error as? NSError
-                completion(status: response, error: nsError)
+        Alamofire.request(.GET, "<#YOUR API ENDPOINT#>", parameters: nil, encoding: .JSON, headers: nil).responseObject { (response: Response<💩, NSError>) in
+            completion(status: response.result.value, error: response.result.error)
         }
     }
 

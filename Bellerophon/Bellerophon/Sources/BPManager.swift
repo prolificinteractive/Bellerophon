@@ -112,7 +112,7 @@ public class BellerophonManager: NSObject {
 
     func startAutoChecking(status: BellerophonStatusProtocol) {
         if self.retryTimer == nil {
-            self.retryTimer = BellerophonHelperMethods.timerWithStatus(status, target: self, selector: Selector("checkAppStatus"))
+            self.retryTimer = BellerophonHelperMethods.timerWithStatus(status, target: self, selector: #selector(BellerophonManager.checkAppStatus))
         }
     }
 

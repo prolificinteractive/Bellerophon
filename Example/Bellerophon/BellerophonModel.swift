@@ -23,11 +23,14 @@ class 💩: Mappable, BellerophonStatusProtocol {
     var interval: NSTimeInterval = 0
     var userMessageStr: String = ""
 
-    class func newInstance(map: Map) -> Mappable? {
-        return 💩()
+    required init?(_ map: Map) {
+        isAPIInactive <- map["apiInactive"]
+        shouldForceUpdate <- map["forceUpdate"]
+        interval <- map["retryInterval"]
+        userMessageStr <- map["userMessage"]
     }
 
-     func mapping(map: Map) {
+    func mapping(map: Map) {
         isAPIInactive <- map["apiInactive"]
         shouldForceUpdate <- map["forceUpdate"]
         interval <- map["retryInterval"]
