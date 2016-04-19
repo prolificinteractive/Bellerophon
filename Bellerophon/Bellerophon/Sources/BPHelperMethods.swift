@@ -12,7 +12,7 @@ import UIKit
 public struct BellerophonHelperMethods {
 
     // MARK: Helper Methods
-    public static func screenSize() -> CGSize {
+    public static func screenSize() -> CGSize {        
         return UIScreen.mainScreen().bounds.size
     }
 
@@ -33,22 +33,4 @@ public struct BellerophonHelperMethods {
             repeats: false
         )
     }
-
-    public static func defaultBellerophonView(message: String, image: UIImage) -> UIView {
-        let view = UIView(frame: screenFrame())
-
-        let imageView = UIImageView(frame: view.frame)
-        imageView.contentMode = .ScaleAspectFit
-        imageView.image = image
-        view.addSubview(imageView)
-
-        let label = UILabel(frame: view.frame)
-        label.font = UIFont.systemFontOfSize(30.0)
-        label.textAlignment = .Center
-        label.text = message
-        view.addSubview(label)
-
-        return view
-    }
-
 }
