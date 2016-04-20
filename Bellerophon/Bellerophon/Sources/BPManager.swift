@@ -39,6 +39,10 @@ public class BellerophonManager: NSObject {
     private var retryTimer: NSTimer?
 
     // MARK: Public Methods
+
+    /**
+     Retrieves and handles the app status from the AMS endpoint
+     */
     public func checkAppStatus() {
         assert(killSwitchView != nil, "The kill switch view has to be defined.")
 
@@ -59,6 +63,11 @@ public class BellerophonManager: NSObject {
         }
     }
 
+    /**
+     Use this function to retrieve and handle app status when the app has background mode enabled.
+
+     - parameter completionHandler: Completion handler
+     */
     public func fetchAppStatus(completionHandler: (result: UIBackgroundFetchResult) -> ()) {
         delegate?.bellerophonStatus(self) { status, error in
             if let status = status {
@@ -80,7 +89,7 @@ public class BellerophonManager: NSObject {
     // MARK: Private Methods
     func handleAppStatus(status: BellerophonStatusProtocol) {
         if status.apiInactive() {
-            displayKillSwitch(status.userMessage())
+            displayKillSwitch()
             startAutoChecking(status)
         } else if status.forceUpdate() {
             performForceUpdate()
@@ -100,7 +109,7 @@ public class BellerophonManager: NSObject {
     }
 
     // MARK: Kill Switch Methods
-    func displayKillSwitch(message: String) {
+    func displayKillSwitch() {
         if !killSwitchWindow.keyWindow {
             killSwitchView.frame = killSwitchWindow.bounds
             delegate?.bellerophonWillEngage?(self)
