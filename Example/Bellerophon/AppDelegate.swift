@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegat
         }
     }
 
-    @objc func bellerophonStatus(manager: BellerophonManager, completion: (status: BellerophonStatusProtocol?, error: NSError?) -> ()) {
+    @objc func bellerophonStatus(manager: BellerophonManager, completion: (status: BellerophonObservable?, error: NSError?) -> ()) {
         // MAKE API CALL
         assert(killSwitchURL != nil, "Kill switch URL has to be defined.")
 

@@ -20,7 +20,7 @@ public struct BellerophonHelperMethods {
         return UIWindow(frame: CGRectMake(0.0, 0.0, screenSize().width, screenSize().height))
     }
 
-    public static func timerWithStatus(status: BellerophonStatusProtocol, target: AnyObject, selector: Selector) -> NSTimer {
+    public static func timerWithStatus(status: BellerophonObservable, target: AnyObject, selector: Selector) -> NSTimer {
         return NSTimer.scheduledTimerWithTimeInterval(
             status.retryInterval(),
             target: target,
