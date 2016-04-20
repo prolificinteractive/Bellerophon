@@ -57,6 +57,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtoco
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        BellerophonManager.sharedInstance.fetchAppStatus { result in
+            //Handle result
+        }
+    }
+
     @objc func bellerophonStatus(manager: BellerophonManager, completion: (status: BellerophonStatusProtocol?, error: NSError?) -> ()) {
         // MAKE API CALL
         Alamofire.request(.GET, "<#YOUR API ENDPOINT#>", parameters: nil, encoding: .JSON, headers: nil).responseObject { (response: Response<💩, NSError>) in
