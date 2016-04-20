@@ -19,11 +19,9 @@ import Foundation
     func bellerophonStatus(manager: BellerophonManager, completion: (status: BellerophonStatusProtocol?, error: NSError?) -> ())
 
     /**
-    The force update is active, the app should check the app's version and force to update if needed. An alert should be displayed to redirect to the App Store.
-
-    - parameter manager: The Bellerophon manager.
+    The app is notified that a force update should occur. An alert should be displayed to redirect to the App Store.
     */
-    func checkVersion(manager: BellerophonManager)
+    func shouldForceUpdate()
 
     optional
     /**

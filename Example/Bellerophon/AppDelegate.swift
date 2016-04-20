@@ -55,8 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtoco
         }
     }
 
-    func checkVersion(manager: BellerophonManager) {
-        // CHECK APP VERSION
+    func shouldForceUpdate() {
+        let alert = UIAlertView(title: "Force Update", message: "Force update message is received!", delegate: self, cancelButtonTitle: "Got it")
+        alert.show()
     }
 
 }
