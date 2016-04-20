@@ -98,7 +98,7 @@ public class BellerophonManager: NSObject {
 
     // MARK: Force Update Methods
     func performForceUpdate() {
-        self.delegate?.checkVersion(self)
+        self.delegate?.shouldForceUpdate()
     }
 
     // MARK: Kill Switch Methods
