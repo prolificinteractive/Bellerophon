@@ -12,7 +12,7 @@ import AlamofireObjectMapper
 import Bellerophon
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtocol {
+class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegate {
 
     var window: UIWindow?
     var killSwitchURL: String?

@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc public protocol BellerophonManagerProtocol {
+@objc public protocol BellerophonManagerDelegate {
 
     /**
     Provide Bellerophon's current status according to the status object received

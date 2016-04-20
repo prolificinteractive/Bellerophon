@@ -30,7 +30,7 @@ public class BellerophonManager: NSObject {
     public var killSwitchView: UIView!
 
     /// BellerophonManager delegate
-    public weak var delegate: BellerophonManagerProtocol?
+    public weak var delegate: BellerophonManagerDelegate?
 
     // MARK: Private properties
     private lazy var killSwitchWindow: UIWindow = {
