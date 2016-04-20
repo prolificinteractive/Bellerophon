@@ -20,7 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtoco
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         BellerophonManager.sharedInstance.delegate = self
-        BellerophonManager.sharedInstance.killSwitchView = BellerophonHelperMethods.defaultBellerophonView("The app is killed", image: UIImage(named: "bellerophon.jpg")!)
+
+        let screenSize = UIScreen.mainScreen().bounds.size
+        let view = UIView(frame: CGRectMake(0, 0, screenSize.width, screenSize.height))
+
+        let imageView = UIImageView(frame: view.frame)
+        imageView.contentMode = .ScaleAspectFit
+        imageView.image = UIImage(named: "bellerophon.jpg")!
+        view.addSubview(imageView)
+
+        BellerophonManager.sharedInstance.killSwitchView = imageView
         BellerophonManager.sharedInstance.checkAppStatus()
 
         return true
