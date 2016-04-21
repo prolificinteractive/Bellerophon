@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtoco
         imageView.image = UIImage(named: "bellerophon.jpg")!
         view.addSubview(imageView)
 
-        BellerophonManager.sharedInstance.killSwitchView = imageView
+        BellerophonManager.sharedInstance.killSwitchView = view
         BellerophonManager.sharedInstance.checkAppStatus()
 
         return true
