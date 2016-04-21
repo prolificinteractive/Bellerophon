@@ -15,10 +15,12 @@ import Bellerophon
 class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtocol {
 
     var window: UIWindow?
-
+    var killSwitchURL: String?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+
+        killSwitchURL = "http://qa.cms.prolific.io/killswitch/status/vandelay/ios"
+
         BellerophonManager.sharedInstance.delegate = self
 
         let screenSize = UIScreen.mainScreen().bounds.size
@@ -65,8 +67,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtoco
 
     @objc func bellerophonStatus(manager: BellerophonManager, completion: (status: BellerophonStatusProtocol?, error: NSError?) -> ()) {
         // MAKE API CALL
-        Alamofire.request(.GET, "<#YOUR API ENDPOINT#>", parameters: nil, encoding: .JSON, headers: nil).responseObject { (response: Response<💩, NSError>) in
-            completion(status: response.result.value, error: response.result.error)
+        assert(killSwitchURL != nil, "Kill switch URL has to be defined.")
+
+        Alamofire.request(.GET, killSwitchURL!, parameters: nil, encoding: .JSON, headers: nil).responseObject {
+            (response: Response<💩, NSError>) in
+                completion(status: response.result.value, error: response.result.error)
         }
     }
 

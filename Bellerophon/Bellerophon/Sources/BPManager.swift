@@ -12,6 +12,8 @@ import UIKit
 public class BellerophonManager: NSObject {
 
     // MARK: Singleton instance
+
+    /// Shared singleton instance of BellerophonManager
     public static let sharedInstance = BellerophonManager()
     override private init() {
         super.init()
@@ -23,7 +25,11 @@ public class BellerophonManager: NSObject {
     }
 
     // MARK: Public properties
-    public var killSwitchView: UIView!    
+
+    /// View to be shown when the kill switch is turned on. Must be set by the application using Bellerophon
+    public var killSwitchView: UIView!
+
+    /// BellerophonManager delegate
     public weak var delegate: BellerophonManagerProtocol?
 
     // MARK: Private properties
@@ -87,7 +93,7 @@ public class BellerophonManager: NSObject {
     }
 
     // MARK: Private Methods
-    func handleAppStatus(status: BellerophonStatusProtocol) {
+    private func handleAppStatus(status: BellerophonStatusProtocol) {
         if status.apiInactive() {
             displayKillSwitch()
             startAutoChecking(status)
@@ -103,13 +109,11 @@ public class BellerophonManager: NSObject {
         retryTimer = nil
     }
 
-    // MARK: Force Update Methods
-    func performForceUpdate() {
+    private func performForceUpdate() {
         delegate?.shouldForceUpdate()
     }
 
-    // MARK: Kill Switch Methods
-    func displayKillSwitch() {
+    private func displayKillSwitch() {
         if !killSwitchWindow.keyWindow {
             killSwitchView.frame = killSwitchWindow.bounds
             delegate?.bellerophonWillEngage?(self)
@@ -117,17 +121,16 @@ public class BellerophonManager: NSObject {
         }
     }
 
-    func startAutoChecking(status: BellerophonStatusProtocol) {
-        if retryTimer == nil {
-            retryTimer = BellerophonHelperMethods.timerWithStatus(status, target: self, selector: #selector(BellerophonManager.checkAppStatus))
-        }
-    }
-
-    func dismissKillSwitchIfNeeded() {
+    private func dismissKillSwitchIfNeeded() {
         if killSwitchWindow.keyWindow {
             delegate?.bellerophonWillDisengage?(self)
             killSwitchWindow.hidden = true;
         }
     }
 
+    private func startAutoChecking(status: BellerophonStatusProtocol) {
+        if retryTimer == nil {
+            retryTimer = BellerophonHelperMethods.timerWithStatus(status, target: self, selector: #selector(BellerophonManager.checkAppStatus))
+        }
+    }
 }

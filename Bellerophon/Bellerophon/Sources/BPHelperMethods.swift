@@ -12,12 +12,8 @@ import UIKit
 public struct BellerophonHelperMethods {
 
     // MARK: Helper Methods
-    public static func screenSize() -> CGSize {        
+    public static func screenSize() -> CGSize {
         return UIScreen.mainScreen().bounds.size
-    }
-
-    public static func screenFrame() -> CGRect {
-        return CGRectMake(0.0, 0.0, screenSize().width, screenSize().height)
     }
 
     public static func newWindow() -> UIWindow {
