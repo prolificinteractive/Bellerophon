@@ -31,6 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtoco
         imageView.image = UIImage(named: "bellerophon.jpg")!
         view.addSubview(imageView)
 
+        let label = UILabel(frame: view.frame)
+        label.font = UIFont.systemFontOfSize(15.0)
+        label.textAlignment = .Center
+        label.numberOfLines = 0
+        label.text = "Bummer! The App is currently unavailable check back in a little while."
+        view.addSubview(label)
+
         BellerophonManager.sharedInstance.killSwitchView = view
         BellerophonManager.sharedInstance.checkAppStatus()
 
@@ -61,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtoco
 
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         BellerophonManager.sharedInstance.fetchAppStatus { result in
-            //Handle result
+            completionHandler(result)
         }
     }
 
