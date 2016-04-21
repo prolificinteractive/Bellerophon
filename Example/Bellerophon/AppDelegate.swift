@@ -15,12 +15,30 @@ import Bellerophon
 class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtocol {
 
     var window: UIWindow?
-
+    var killSwitchURL: String?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+
+        killSwitchURL = "http://qa.cms.prolific.io/killswitch/status/vandelay/ios"
+
         BellerophonManager.sharedInstance.delegate = self
-        BellerophonManager.sharedInstance.killSwitchView = BellerophonHelperMethods.defaultBellerophonView("The app is killed", image: UIImage(named: "bellerophon.jpg")!)
+
+        let screenSize = UIScreen.mainScreen().bounds.size
+        let view = UIView(frame: CGRectMake(0, 0, screenSize.width, screenSize.height))
+
+        let imageView = UIImageView(frame: view.frame)
+        imageView.contentMode = .ScaleAspectFit
+        imageView.image = UIImage(named: "bellerophon.jpg")!
+        view.addSubview(imageView)
+
+        let label = UILabel(frame: view.frame)
+        label.font = UIFont.systemFontOfSize(15.0)
+        label.textAlignment = .Center
+        label.numberOfLines = 0
+        label.text = "Bummer! The App is currently unavailable check back in a little while."
+        view.addSubview(label)
+
+        BellerophonManager.sharedInstance.killSwitchView = view
         BellerophonManager.sharedInstance.checkAppStatus()
 
         return true
@@ -48,10 +66,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtoco
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        BellerophonManager.sharedInstance.fetchAppStatus { result in
+            completionHandler(result)
+        }
+    }
+
     @objc func bellerophonStatus(manager: BellerophonManager, completion: (status: BellerophonStatusProtocol?, error: NSError?) -> ()) {
         // MAKE API CALL
-        Alamofire.request(.GET, "<#YOUR API ENDPOINT#>", parameters: nil, encoding: .JSON, headers: nil).responseObject { (response: Response<💩, NSError>) in
-            completion(status: response.result.value, error: response.result.error)
+        assert(killSwitchURL != nil, "Kill switch URL has to be defined.")
+
+        Alamofire.request(.GET, killSwitchURL!, parameters: nil, encoding: .JSON, headers: nil).responseObject {
+            (response: Response<💩, NSError>) in
+                completion(status: response.result.value, error: response.result.error)
         }
     }
 

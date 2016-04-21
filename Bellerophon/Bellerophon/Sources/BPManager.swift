@@ -12,48 +12,70 @@ import UIKit
 public class BellerophonManager: NSObject {
 
     // MARK: Singleton instance
+
+    /// Shared singleton instance of BellerophonManager
     public static let sharedInstance = BellerophonManager()
+    override private init() {
+        super.init()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector(stopTimer()), name: UIApplicationDidEnterBackgroundNotification, object: nil)
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 
     // MARK: Public properties
+
+    /// View to be shown when the kill switch is turned on. Must be set by the application using Bellerophon
     public var killSwitchView: UIView!
-    public var appStatus: BellerophonStatusProtocol?
+
+    /// BellerophonManager delegate
     public weak var delegate: BellerophonManagerProtocol?
 
     // MARK: Private properties
     private lazy var killSwitchWindow: UIWindow = {
         let window = BellerophonHelperMethods.newWindow()
-        window.windowLevel = UIWindowLevelAlert;
-        let rootViewController = UIViewController();
+        window.windowLevel = UIWindowLevelAlert
+        let rootViewController = UIViewController()
         rootViewController.view.addSubview(self.killSwitchView)
-        window.rootViewController = rootViewController;
+        window.rootViewController = rootViewController
         return window
     }()
     private var requestPending = false
     private var retryTimer: NSTimer?
 
     // MARK: Public Methods
+
+    /**
+     Retrieves and handles the app status from the AMS endpoint
+     */
     public func checkAppStatus() {
         assert(killSwitchView != nil, "The kill switch view has to be defined.")
 
-        if self.requestPending {
+        if requestPending {
             return;
         }
 
-        self.requestPending = true
-        self.stopTimer()
+        requestPending = true
+        stopTimer()
 
-        self.delegate?.bellerophonStatus(self, completion: { (status, error) -> () in
+        delegate?.bellerophonStatus(self) { status, error in
             self.requestPending = false
             if let status = status {
                 self.handleAppStatus(status)
             } else {
                 self.dismissKillSwitchIfNeeded()
             }
-        })
+        }
     }
 
+    /**
+     Use this function to retrieve and handle app status when the app has background mode enabled.
+
+     - parameter completionHandler: Completion handler
+     */
     public func fetchAppStatus(completionHandler: (result: UIBackgroundFetchResult) -> ()) {
-        self.delegate?.bellerophonStatus(self, completion: { (status, error) -> () in
+        delegate?.bellerophonStatus(self) { status, error in
             if let status = status {
                 self.handleAppStatus(status)
                 if status.apiInactive() {
@@ -67,60 +89,48 @@ public class BellerophonManager: NSObject {
                 // An error occurred
                 completionHandler(result: .Failed)
             }
-        })
+        }
     }
 
     // MARK: Private Methods
-    override init() {
-        super.init()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector(stopTimer()), name: UIApplicationDidEnterBackgroundNotification, object: nil)
-    }
-
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-
-    func handleAppStatus(status: BellerophonStatusProtocol) {
+    private func handleAppStatus(status: BellerophonStatusProtocol) {
         if status.apiInactive() {
-            self.displayKillSwitch(status.userMessage())
-            self.startAutoChecking(status)
+            displayKillSwitch()
+            startAutoChecking(status)
         } else if status.forceUpdate() {
-            self.performForceUpdate()
+            performForceUpdate()
         } else {
-            self.dismissKillSwitchIfNeeded()
+            dismissKillSwitchIfNeeded()
         }
     }
 
     private func stopTimer() {
-        self.retryTimer?.invalidate()
-        self.retryTimer = nil
+        retryTimer?.invalidate()
+        retryTimer = nil
     }
 
-    // MARK: Force Update Methods
-    func performForceUpdate() {
-        self.delegate?.shouldForceUpdate()
+    private func performForceUpdate() {
+        delegate?.shouldForceUpdate()
     }
 
-    // MARK: Kill Switch Methods
-    func displayKillSwitch(message: String) {
-        if !self.killSwitchWindow.keyWindow {
-            self.killSwitchView.frame = self.killSwitchWindow.bounds
-            self.delegate?.bellerophonWillEngage?(self)
-            self.killSwitchWindow.makeKeyAndVisible()
+    private func displayKillSwitch() {
+        if !killSwitchWindow.keyWindow {
+            killSwitchView.frame = killSwitchWindow.bounds
+            delegate?.bellerophonWillEngage?(self)
+            killSwitchWindow.makeKeyAndVisible()
         }
     }
 
-    func startAutoChecking(status: BellerophonStatusProtocol) {
-        if self.retryTimer == nil {
-            self.retryTimer = BellerophonHelperMethods.timerWithStatus(status, target: self, selector: #selector(BellerophonManager.checkAppStatus))
+    private func dismissKillSwitchIfNeeded() {
+        if killSwitchWindow.keyWindow {
+            delegate?.bellerophonWillDisengage?(self)
+            killSwitchWindow.hidden = true;
         }
     }
 
-    func dismissKillSwitchIfNeeded() {
-        if self.killSwitchWindow.keyWindow {
-            self.delegate?.bellerophonWillDisengage?(self)
-            self.killSwitchWindow.hidden = true;
+    private func startAutoChecking(status: BellerophonStatusProtocol) {
+        if retryTimer == nil {
+            retryTimer = BellerophonHelperMethods.timerWithStatus(status, target: self, selector: #selector(BellerophonManager.checkAppStatus))
         }
     }
-
 }
