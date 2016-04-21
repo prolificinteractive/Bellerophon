@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc public protocol BellerophonStatusProtocol {
+@objc public protocol BellerophonObservable {
 
     /**
     Is the API is active or inactive?

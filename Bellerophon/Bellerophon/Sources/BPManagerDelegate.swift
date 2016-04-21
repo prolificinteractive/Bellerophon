@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc public protocol BellerophonManagerProtocol {
+@objc public protocol BellerophonManagerDelegate {
 
     /**
     Provide Bellerophon's current status according to the status object received
@@ -16,7 +16,7 @@ import Foundation
     - parameter manager:    The Bellerophon manager.
     - parameter completion: The completion block.
     */
-    func bellerophonStatus(manager: BellerophonManager, completion: (status: BellerophonStatusProtocol?, error: NSError?) -> ())
+    func bellerophonStatus(manager: BellerophonManager, completion: (status: BellerophonObservable?, error: NSError?) -> ())
 
     /**
     The app is notified that a force update should occur. An alert should be displayed to redirect to the App Store.

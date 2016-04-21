@@ -12,7 +12,7 @@ import AlamofireObjectMapper
 import Bellerophon
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtocol {
+class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegate {
 
     var window: UIWindow?
     var killSwitchURL: String?
@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtoco
         }
     }
 
-    @objc func bellerophonStatus(manager: BellerophonManager, completion: (status: BellerophonStatusProtocol?, error: NSError?) -> ()) {
+    @objc func bellerophonStatus(manager: BellerophonManager, completion: (status: BellerophonObservable?, error: NSError?) -> ()) {
         // MAKE API CALL
         assert(killSwitchURL != nil, "Kill switch URL has to be defined.")
 

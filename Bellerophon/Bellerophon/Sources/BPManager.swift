@@ -30,7 +30,7 @@ public class BellerophonManager: NSObject {
     public var killSwitchView: UIView!
 
     /// BellerophonManager delegate
-    public weak var delegate: BellerophonManagerProtocol?
+    public weak var delegate: BellerophonManagerDelegate?
 
     // MARK: Private properties
     private lazy var killSwitchWindow: UIWindow = {
@@ -93,7 +93,8 @@ public class BellerophonManager: NSObject {
     }
 
     // MARK: Private Methods
-    private func handleAppStatus(status: BellerophonStatusProtocol) {
+
+    private func handleAppStatus(status: BellerophonObservable) {
         if status.apiInactive() {
             displayKillSwitch()
             startAutoChecking(status)
@@ -128,7 +129,7 @@ public class BellerophonManager: NSObject {
         }
     }
 
-    private func startAutoChecking(status: BellerophonStatusProtocol) {
+    private func startAutoChecking(status: BellerophonObservable) {
         if retryTimer == nil {
             retryTimer = BellerophonHelperMethods.timerWithStatus(status, target: self, selector: #selector(BellerophonManager.checkAppStatus))
         }

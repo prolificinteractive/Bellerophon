@@ -16,7 +16,7 @@ import Bellerophon
 //    "retryInterval": null,
 //    "userMessage": null
 //}
-class 💩: Mappable, BellerophonStatusProtocol {
+class 💩: Mappable, BellerophonObservable {
 
     var isAPIInactive: Bool = false
     var shouldForceUpdate: Bool = false
