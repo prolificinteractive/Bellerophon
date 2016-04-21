@@ -17,7 +17,8 @@ Bellerophon is a Swift implementation of a protocol and convenient methods that 
 
 ## Requirements
 
-IDE, Tools etc. required for the project to run
+* iOS 8.0+
+* Xcode 7.3+
 
 ## Installation ##
 
