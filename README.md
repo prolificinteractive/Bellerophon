@@ -17,7 +17,8 @@ Bellerophon is a Swift implementation of a protocol and convenient methods that 
 
 ## Requirements
 
-IDE, Tools etc. required for the project to run
+* iOS 8.0+
+* Xcode 7.3+
 
 ## Installation ##
 
@@ -37,10 +38,10 @@ import Bellerophon
 
 In order to use Bellerophon, you'll have to follow these steps:
 
-1 - In your AppDelegate implementation file, import the project and register to the `BellerophonManagerProtocol`.
+1 - In your AppDelegate implementation file, import the project and register to the `BellerophonManagerDelegate`.
 
 ```swift
-class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerProtocol {
+class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegate {
 	...
 }
 ```
@@ -60,13 +61,13 @@ BellerophonManager.sharedInstance.checkAppStatus()
 
 Here is for the Bellerophon basic implementation. Now you will need to create your own model that conforms to the Bellerophon status protocol.
 
-4 - Creates your model and make it conforms to `BellerophonStatusProtocol`.
+4 - Creates your model and make it conforms to `BellerophonObservable`.
 
 ```swift
-class BellerophonModel: BellerophonStatusProtocol { }
+class BellerophonModel: BellerophonObservable { }
 ```
 
-5 - Implements the `BellerophonStatusProtocol` methods.
+5 - Implements the `BellerophonObservable` methods.
 
 ```swift
 @objc func apiInactive() -> Bool {
@@ -86,10 +87,10 @@ class BellerophonModel: BellerophonStatusProtocol { }
 }
 ```
 
-6 - Now that you have your model, you are ready to implement the `BellerophonManagerProtocol` methods in your App Delegate.
+6 - Now that you have your model, you are ready to implement the `BellerophonManagerDelegate` methods in your App Delegate.
 
 ```swift
-func bellerophonStatus(manager: BellerophonManager, completion: (status: BellerophonStatusProtocol?, error: NSError?) -> ()) {
+func bellerophonStatus(manager: BellerophonManager, completion: (status: BellerophonObservable?, error: NSError?) -> ()) {
 	// MAKE API CALL
 	APIManager.GET() { (status, error)
 		// Send the API data to the Bellerophon manager.
@@ -98,8 +99,8 @@ func bellerophonStatus(manager: BellerophonManager, completion: (status: Bellero
 	}
 }
 
-func checkVersion(manager: BellerophonManager) {
-	// CHECK APP VERSION
+func shouldForceUpdate(manager: BellerophonManager) {
+	// A force update event should occur. An alert should be displayed to redirect to the App Store.
 }
 ```
 
