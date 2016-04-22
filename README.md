@@ -13,7 +13,7 @@ Sometimes in a development phase, it happens for different reasons that the app 
 
 ## Description ##
 
-Bellerophon is a Swift implementation of a protocol and convenient methods that allow you to either kill your app or force the users to update using the App Store. By implementing Bellerphon, you will be able to easily add the logic to present a kill state view in your app, or force users to update.
+Bellerophon is a Swift implementation of a protocol and convenient methods that allow you to either kill your app or force the users to update using the App Store. By implementing Bellerophon, you will be able to easily add the logic to present a kill state view in your app, or force users to update.
 
 ## Requirements
 
