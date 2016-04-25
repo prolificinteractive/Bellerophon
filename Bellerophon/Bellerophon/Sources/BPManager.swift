@@ -15,7 +15,7 @@ public class BellerophonManager: NSObject {
 
     /// Shared singleton instance of BellerophonManager
     public static let sharedInstance = BellerophonManager()
-    override private init() {
+    override internal init() {
         super.init()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector(stopTimer()), name: UIApplicationDidEnterBackgroundNotification, object: nil)
     }
@@ -32,8 +32,8 @@ public class BellerophonManager: NSObject {
     /// BellerophonManager delegate
     public weak var delegate: BellerophonManagerDelegate?
 
-    // MARK: Private properties
-    private lazy var killSwitchWindow: UIWindow = {
+    // MARK: internal properties
+    internal lazy var killSwitchWindow: UIWindow = {
         let window = BellerophonHelperMethods.newWindow()
         window.windowLevel = UIWindowLevelAlert
         let rootViewController = UIViewController()
@@ -41,8 +41,8 @@ public class BellerophonManager: NSObject {
         window.rootViewController = rootViewController
         return window
     }()
-    private var requestPending = false
-    private var retryTimer: NSTimer?
+    internal var requestPending = false
+    internal var retryTimer: NSTimer?
 
     // MARK: Public Methods
 
@@ -92,9 +92,9 @@ public class BellerophonManager: NSObject {
         }
     }
 
-    // MARK: Private Methods
+    // MARK: internal Methods
 
-    private func handleAppStatus(status: BellerophonObservable) {
+    internal func handleAppStatus(status: BellerophonObservable) {
         if status.apiInactive() {
             displayKillSwitch()
             startAutoChecking(status)
@@ -105,31 +105,34 @@ public class BellerophonManager: NSObject {
         }
     }
 
-    private func stopTimer() {
+    internal func stopTimer() {
         retryTimer?.invalidate()
         retryTimer = nil
     }
 
-    private func performForceUpdate() {
+    internal func performForceUpdate() {
         delegate?.shouldForceUpdate()
     }
 
-    private func displayKillSwitch() {
+    internal func displayKillSwitch() {
         if !killSwitchWindow.keyWindow {
             killSwitchView.frame = killSwitchWindow.bounds
             delegate?.bellerophonWillEngage?(self)
-            killSwitchWindow.makeKeyAndVisible()
+            // if there's no such keyWindow in the application, do not show killSwitchWindow
+            if let _ = UIApplication.sharedApplication().keyWindow {
+                killSwitchWindow.makeKeyAndVisible()
+            }
         }
     }
 
-    private func dismissKillSwitchIfNeeded() {
+    internal func dismissKillSwitchIfNeeded() {
         if killSwitchWindow.keyWindow {
             delegate?.bellerophonWillDisengage?(self)
             killSwitchWindow.hidden = true;
         }
     }
 
-    private func startAutoChecking(status: BellerophonObservable) {
+    internal func startAutoChecking(status: BellerophonObservable) {
         if retryTimer == nil {
             retryTimer = BellerophonHelperMethods.timerWithStatus(status, target: self, selector: #selector(BellerophonManager.checkAppStatus))
         }
