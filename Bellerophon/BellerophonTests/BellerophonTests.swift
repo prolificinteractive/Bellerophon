@@ -10,8 +10,15 @@ import XCTest
 @testable import Bellerophon
 
 class BellerophonTests: XCTestCase {
-    
-    var statusArray: [BellerophonModel]!
+
+    enum ResponseCases: Int {
+        case KillSwitchOffForceUpdateOff = 0b00
+        case KillSwitchOffForceUpdateOn = 0b01
+        case KillSwitchOnForceUpdateOff = 0b10
+        case KillSwitchOnForceUpdateOn = 0b11
+    }
+
+    var responseArray: [BellerophonResponse]!
 
     var willEngageIsCalled: Bool!
     var willDisengageIsCalled: Bool!
@@ -22,11 +29,16 @@ class BellerophonTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        statusArray = [BellerophonModel]()
-        statusArray.append(BellerophonModel(isAPIInactive: false, shouldForceUpdate: false, interval: 0b00, userMessageStr: "Both killSwitch and forceUpdate are turned off"))
-        statusArray.append(BellerophonModel(isAPIInactive: false, shouldForceUpdate: true, interval: 0b01, userMessageStr: "Only forceUpdate is turned on"))
-        statusArray.append(BellerophonModel(isAPIInactive: true, shouldForceUpdate: false, interval: 0b10, userMessageStr: "Only killSwitch is turned on"))
-        statusArray.append(BellerophonModel(isAPIInactive: true, shouldForceUpdate: true, interval: 0b11, userMessageStr: "Both killSwitch and forceUpdate are turned on"))
+        responseArray = [BellerophonResponse]()
+
+        responseArray.append(BellerophonResponse(isAPIInactive: false, shouldForceUpdate: false,
+            interval: Double(ResponseCases.KillSwitchOffForceUpdateOff.rawValue), userMessageStr: "Both killSwitch and forceUpdate are turned off"))
+        responseArray.append(BellerophonResponse(isAPIInactive: false, shouldForceUpdate: true,
+            interval: Double(ResponseCases.KillSwitchOffForceUpdateOn.rawValue), userMessageStr: "Only forceUpdate is turned on"))
+        responseArray.append(BellerophonResponse(isAPIInactive: true, shouldForceUpdate: false,
+            interval: Double(ResponseCases.KillSwitchOnForceUpdateOff.rawValue), userMessageStr: "Only killSwitch is turned on"))
+        responseArray.append(BellerophonResponse(isAPIInactive: true, shouldForceUpdate: true,
+            interval: Double(ResponseCases.KillSwitchOnForceUpdateOn.rawValue), userMessageStr: "Both killSwitch and forceUpdate are turned on"))
 
         BellerophonManager.sharedInstance.delegate = self
         BellerophonManager.sharedInstance.killSwitchView = UIView()
@@ -41,25 +53,39 @@ class BellerophonTests: XCTestCase {
 
         super.tearDown()
     }
-    
-    func testCheckAppStatus_FF() {
-        currentIdx = 0b00
+
+    func testResponseKillSwitchOffForceUpdateOff() {
+        currentIdx = ResponseCases.KillSwitchOffForceUpdateOff.rawValue
         BellerophonManager.sharedInstance.checkAppStatus()
+
+        XCTAssertFalse(willEngageIsCalled, "The delegate method bellerophonWillEngage should not be called")
+        XCTAssertFalse(shouldForceUpdateIsCalled, "shouldForceUpdate should not be called")
     }
 
-    func testCheckAppStatus_FT() {
-        currentIdx = 0b01
+    func testResponseKillSwitchOffForceUpdateOn() {
+        currentIdx = ResponseCases.KillSwitchOffForceUpdateOn.rawValue
         BellerophonManager.sharedInstance.checkAppStatus()
+
+        XCTAssertFalse(willEngageIsCalled, "The delegate method bellerophonWillEngage should not be called")
+        XCTAssertTrue(shouldForceUpdateIsCalled, "The delegate method shouldForceUpdate should be called")
     }
 
-    func testCheckAppStatus_TF() {
-        currentIdx = 0b10
+    func testResponseKillSwitchOnForceUpdateOff() {
+        currentIdx = ResponseCases.KillSwitchOnForceUpdateOff.rawValue
         BellerophonManager.sharedInstance.checkAppStatus()
+
+        XCTAssertTrue(willEngageIsCalled, "The delegate method bellerophonWillEngage should be called")
+        XCTAssertFalse(shouldForceUpdateIsCalled, "The delegate method shouldForceUpdate should not be called")
     }
-    
-    func testCheckAppStatus_TT() {
-        currentIdx = 0b11
+
+    func testResponseKillSwitchOnForceUpdateOn() {
+        currentIdx = ResponseCases.KillSwitchOnForceUpdateOn.rawValue
         BellerophonManager.sharedInstance.checkAppStatus()
+
+        XCTAssertTrue(willEngageIsCalled, "The delegate method bellerophonWillEngage should be called")
+        // Notice that if both of killSwitch and forceUpdate are on, only killSwitch is called
+        XCTAssertFalse(shouldForceUpdateIsCalled, "The delegate method shouldForceUpdate should not be called")
+    }
     }
 
 }
@@ -67,26 +93,9 @@ class BellerophonTests: XCTestCase {
 extension BellerophonTests: BellerophonManagerDelegate {
 
     func bellerophonStatus(manager: BellerophonManager, completion: (status: BellerophonObservable?, error: NSError?) -> ()) {
-
-        switch currentIdx {
-        case 0b00:
-            completion(status: statusArray[0b00], error: nil)
-            XCTAssertEqual(BellerophonManager.sharedInstance.killSwitchWindow.hidden, true)
-        case 0b01:
-            completion(status: statusArray[0b01], error: nil)
-            XCTAssertEqual(shouldForceUpdateIsCalled, true)
-        case 0b10:
-            completion(status: statusArray[0b10], error: nil)
-            XCTAssertEqual(willEngageIsCalled, true)
-        case 0b11:
-            completion(status: statusArray[0b11], error: nil)
-            XCTAssertEqual(willEngageIsCalled, true)
-            XCTAssertEqual(shouldForceUpdateIsCalled, false)
-        default:
-            break
-        }
+        completion(status: responseArray[currentIdx], error: nil)
     }
-    
+
     func shouldForceUpdate() {
         shouldForceUpdateIsCalled = true
     }
@@ -100,7 +109,7 @@ extension BellerophonTests: BellerophonManagerDelegate {
     }
 }
 
-class BellerophonModel: BellerophonObservable {
+class BellerophonResponse: BellerophonObservable {
 
     init(isAPIInactive: Bool, shouldForceUpdate: Bool, interval: NSTimeInterval, userMessageStr: String) {
         self.isAPIInactive = isAPIInactive
