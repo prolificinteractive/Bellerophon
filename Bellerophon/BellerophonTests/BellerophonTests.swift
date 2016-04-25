@@ -86,6 +86,16 @@ class BellerophonTests: XCTestCase {
         // Notice that if both of killSwitch and forceUpdate are on, only killSwitch is called
         XCTAssertFalse(shouldForceUpdateIsCalled, "The delegate method shouldForceUpdate should not be called")
     }
+
+    func testTurningOffKillSwitch() {
+        // Turn on kill switch first
+        currentIdx = ResponseCases.KillSwitchOnForceUpdateOff.rawValue
+        BellerophonManager.sharedInstance.checkAppStatus()
+        // Turn off kill switch after
+        currentIdx = ResponseCases.KillSwitchOffForceUpdateOff.rawValue
+        BellerophonManager.sharedInstance.checkAppStatus()
+
+        XCTAssertTrue(BellerophonManager.sharedInstance.killSwitchWindow.hidden, "Kill switch view should not be displayed")
     }
 
 }
