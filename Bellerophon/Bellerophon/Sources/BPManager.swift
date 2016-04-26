@@ -118,10 +118,7 @@ public class BellerophonManager: NSObject {
         if !killSwitchWindow.keyWindow {
             killSwitchView.frame = killSwitchWindow.bounds
             delegate?.bellerophonWillEngage?(self)
-            // if there's no such keyWindow in the application, do not show killSwitchWindow
-            if let _ = UIApplication.sharedApplication().keyWindow {
-                killSwitchWindow.makeKeyAndVisible()
-            }
+            killSwitchWindow.makeKeyAndVisible()
         }
     }
 
