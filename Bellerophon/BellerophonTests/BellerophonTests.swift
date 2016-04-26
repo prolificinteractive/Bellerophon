@@ -149,3 +149,23 @@ class BellerophonResponse: BellerophonObservable {
         return userMessageStr
     }
 }
+
+class MockBPManager: BellerophonManager {
+    static let mockSharedInstance = MockBPManager()
+
+    var displayKillSwitchIsCalled: Bool!
+    var startAutoCheckingIsCalled: Bool!
+    var dismissKillSwitchIfNeededIsCalled: Bool!
+
+    override func displayKillSwitch() {
+        displayKillSwitchIsCalled = true
+    }
+
+    override func startAutoChecking(status: BellerophonObservable) {
+        startAutoCheckingIsCalled = true
+    }
+
+    override func dismissKillSwitchIfNeeded() {
+        dismissKillSwitchIfNeededIsCalled = true
+    }
+}
