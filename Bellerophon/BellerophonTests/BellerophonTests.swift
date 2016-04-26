@@ -49,9 +49,7 @@ class BellerophonTests: XCTestCase {
     }
     
     override func tearDown() {
-        MockBPManager.sharedInstance.delegate = nil
-        
-        MockBPManager.mockSharedInstance.delegate = self
+        MockBPManager.mockSharedInstance.delegate = nil
 
         super.tearDown()
     }
