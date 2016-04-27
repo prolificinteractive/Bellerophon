@@ -15,7 +15,6 @@
 		8EF3B9BF1B88DA1B007A4E5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EF3B9BD1B88DA1B007A4E5D /* Main.storyboard */; };
 		8EF3B9C11B88DA1B007A4E5D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EF3B9C01B88DA1B007A4E5D /* Images.xcassets */; };
 		8EF3B9C41B88DA1B007A4E5D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EF3B9C21B88DA1B007A4E5D /* LaunchScreen.xib */; };
-		8EF3B9D01B88DA1B007A4E5D /* BellerophonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF3B9CF1B88DA1B007A4E5D /* BellerophonTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +38,6 @@
 		8EF3B9C01B88DA1B007A4E5D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8EF3B9C31B88DA1B007A4E5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		8EF3B9C91B88DA1B007A4E5D /* BellerophonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BellerophonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8EF3B9CE1B88DA1B007A4E5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8EF3B9CF1B88DA1B007A4E5D /* BellerophonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellerophonTests.swift; sourceTree = "<group>"; };
 		9C29D0C65208BD37E4CBB251 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF00D8CCFF78D904A17A0CB4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,7 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				8EF3B9B61B88DA1B007A4E5D /* Bellerophon */,
-				8EF3B9CC1B88DA1B007A4E5D /* BellerophonTests */,
 				8EF3B9B51B88DA1B007A4E5D /* Products */,
 				4CB44AE196BB6C123E8A0615 /* Pods */,
 				45E991FA62276E808EB241C6 /* Frameworks */,
@@ -119,23 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				8EF3B9B81B88DA1B007A4E5D /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		8EF3B9CC1B88DA1B007A4E5D /* BellerophonTests */ = {
-			isa = PBXGroup;
-			children = (
-				8EF3B9CF1B88DA1B007A4E5D /* BellerophonTests.swift */,
-				8EF3B9CD1B88DA1B007A4E5D /* Supporting Files */,
-			);
-			path = BellerophonTests;
-			sourceTree = "<group>";
-		};
-		8EF3B9CD1B88DA1B007A4E5D /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				8EF3B9CE1B88DA1B007A4E5D /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -309,7 +288,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E0915F11B8903FB00ED7FC4 /* BellerophonModel.swift in Sources */,
-				8EF3B9D01B88DA1B007A4E5D /* BellerophonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
