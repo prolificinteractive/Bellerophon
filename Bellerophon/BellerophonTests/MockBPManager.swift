@@ -1,0 +1,29 @@
+//
+//  MockBPManager.swift
+//  Bellerophon
+//
+//  Created by Shiyuan Jiang on 4/27/16.
+//  Copyright © 2016 Prolific Interactive. All rights reserved.
+//
+
+@testable import Bellerophon
+
+class MockBPManager: BellerophonManager {
+    static let mockSharedInstance = MockBPManager()
+    
+    var displayKillSwitchIsCalled: Bool!
+    var startAutoCheckingIsCalled: Bool!
+    var dismissKillSwitchIfNeededIsCalled: Bool!
+    
+    override func displayKillSwitch() {
+        displayKillSwitchIsCalled = true
+    }
+    
+    override func startAutoChecking(status: BellerophonObservable) {
+        startAutoCheckingIsCalled = true
+    }
+    
+    override func dismissKillSwitchIfNeeded() {
+        dismissKillSwitchIfNeededIsCalled = true
+    }
+}

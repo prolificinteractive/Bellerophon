@@ -14,6 +14,8 @@
 		ABADBB8B1CCA88DF0057F491 /* BPObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABADBB8A1CCA88DF0057F491 /* BPObservable.swift */; };
 		ABADBB981CCA92580057F491 /* Bellerophon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EED59C81C40194500CB3223 /* Bellerophon.framework */; };
 		ABADBB9E1CCA93070057F491 /* BellerophonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABADBB951CCA92580057F491 /* BellerophonTests.swift */; };
+		ABF6724C1CD13CCA00762C10 /* MockBPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6724B1CD13CCA00762C10 /* MockBPManager.swift */; };
+		ABF6724E1CD13D3E00762C10 /* BellerophonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6724D1CD13D3E00762C10 /* BellerophonResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +39,8 @@
 		ABADBB931CCA92580057F491 /* BellerophonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BellerophonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABADBB951CCA92580057F491 /* BellerophonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellerophonTests.swift; sourceTree = "<group>"; };
 		ABADBB971CCA92580057F491 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABF6724B1CD13CCA00762C10 /* MockBPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockBPManager.swift; sourceTree = "<group>"; };
+		ABF6724D1CD13D3E00762C10 /* BellerophonResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellerophonResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				ABADBB951CCA92580057F491 /* BellerophonTests.swift */,
+				ABF6724D1CD13D3E00762C10 /* BellerophonResponse.swift */,
+				ABF6724B1CD13CCA00762C10 /* MockBPManager.swift */,
 				ABADBB971CCA92580057F491 /* Info.plist */,
 			);
 			path = BellerophonTests;
@@ -226,6 +232,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABADBB9E1CCA93070057F491 /* BellerophonTests.swift in Sources */,
+				ABF6724E1CD13D3E00762C10 /* BellerophonResponse.swift in Sources */,
+				ABF6724C1CD13CCA00762C10 /* MockBPManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
