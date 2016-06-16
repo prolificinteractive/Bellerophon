@@ -95,11 +95,11 @@ public class BellerophonManager: NSObject {
     // MARK: internal Methods
 
     internal func handleAppStatus(status: BellerophonObservable) {
-        if status.apiInactive() {
+        if status.forceUpdate() {
+            performForceUpdate()
+        } else if status.apiInactive() {
             displayKillSwitch()
             startAutoChecking(status)
-        } else if status.forceUpdate() {
-            performForceUpdate()
         } else {
             dismissKillSwitchIfNeeded()
         }
