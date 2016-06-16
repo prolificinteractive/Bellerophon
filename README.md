@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegat
 }
 ```
 
-2 - Implement and configure the Bellerophon shared manager by setting the delegate property and the kill view.
+2 - Implement and configure the Bellerophon shared manager by setting the delegate property and the kill switch view.
 
 ```swift
 BellerophonManager.sharedInstance.delegate = self
@@ -59,7 +59,7 @@ BellerophonManager.sharedInstance.killSwitchView = <YOUR_VIEW>
 BellerophonManager.sharedInstance.checkAppStatus()
 ```
 
-Here is for the Bellerophon basic implementation. Now you will need to create your own model that conforms to the Bellerophon status protocol.
+Here is for the Bellerophon basic implementation. Now you will need to create your own model that conforms to the Bellerophon status protocol, `BellerophonObservable`.
 
 4 - Creates your model and make it conforms to `BellerophonObservable`.
 
@@ -99,7 +99,7 @@ func bellerophonStatus(manager: BellerophonManager, completion: (status: Bellero
 	}
 }
 
-func shouldForceUpdate(manager: BellerophonManager) {
+func shouldForceUpdate() {
 	// A force update event should occur. An alert should be displayed to redirect to the App Store.
 }
 ```
