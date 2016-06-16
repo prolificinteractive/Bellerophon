@@ -101,10 +101,10 @@ class BellerophonTests: XCTestCase {
         MockBPManager.mockSharedInstance.checkAppStatus()
 
         // then
-        XCTAssertTrue(MockBPManager.mockSharedInstance.displayKillSwitchIsCalled, "Internal func displayKillSwitch should be called")
-        XCTAssertTrue(MockBPManager.mockSharedInstance.startAutoCheckingIsCalled, "Internal func startAutoCheckingIsCalled should be called")
-        // Notice that if both of killSwitch and forceUpdate are on, only killSwitch is called
-        XCTAssertFalse(shouldForceUpdateIsCalled, "The delegate method shouldForceUpdate should not be called")
+        XCTAssertFalse(MockBPManager.mockSharedInstance.displayKillSwitchIsCalled, "Internal func displayKillSwitch should not be called")
+        XCTAssertFalse(MockBPManager.mockSharedInstance.startAutoCheckingIsCalled, "Internal func startAutoCheckingIsCalled should not be called")
+        // Notice that if both of killSwitch and forceUpdate are on, only forceUpdate is called
+        XCTAssertTrue(shouldForceUpdateIsCalled, "The delegate method shouldForceUpdate should be called")
     }
 
     func test_dismissKillSwitchView() {
