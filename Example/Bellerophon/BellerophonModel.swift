@@ -6,9 +6,8 @@
 //  Copyright (c) 2015 Prolific Interactive. All rights reserved.
 //
 
-import Foundation
-import ObjectMapper
 import Bellerophon
+import ObjectMapper
 
 //{
 //    "apiInactive": false,
@@ -20,7 +19,7 @@ class 💩: Mappable, BellerophonObservable {
 
     var isAPIInactive: Bool = false
     var shouldForceUpdate: Bool = false
-    var interval: NSTimeInterval = 0
+    var interval: TimeInterval = 0
     var userMessageStr: String = ""
 
     required init?(_ map: Map) {
@@ -30,7 +29,7 @@ class 💩: Mappable, BellerophonObservable {
         userMessageStr <- map["userMessage"]
     }
 
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         isAPIInactive <- map["apiInactive"]
         shouldForceUpdate <- map["forceUpdate"]
         interval <- map["retryInterval"]
@@ -45,7 +44,7 @@ class 💩: Mappable, BellerophonObservable {
         return self.shouldForceUpdate
     }
 
-    @objc func retryInterval() -> NSTimeInterval {
+    @objc func retryInterval() -> TimeInterval {
         return self.interval
     }
 

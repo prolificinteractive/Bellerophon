@@ -15,6 +15,7 @@
 		8EF3B9BF1B88DA1B007A4E5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EF3B9BD1B88DA1B007A4E5D /* Main.storyboard */; };
 		8EF3B9C11B88DA1B007A4E5D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EF3B9C01B88DA1B007A4E5D /* Images.xcassets */; };
 		8EF3B9C41B88DA1B007A4E5D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EF3B9C21B88DA1B007A4E5D /* LaunchScreen.xib */; };
+		EA1AA9960C30516CA0CBD74D /* Pods_Bellerophon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 386BF294A73E26FC2EC7343F /* Pods_Bellerophon.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +74,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4CB44AE196BB6C123E8A0615 /* Pods */ = {
+		8E1C7505A531EE76EB902747 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				3FEDDAF70F6FE7454723AE6E /* Pods.debug.xcconfig */,
@@ -89,8 +90,8 @@
 			children = (
 				8EF3B9B61B88DA1B007A4E5D /* Bellerophon */,
 				8EF3B9B51B88DA1B007A4E5D /* Products */,
-				4CB44AE196BB6C123E8A0615 /* Pods */,
 				45E991FA62276E808EB241C6 /* Frameworks */,
+				8E1C7505A531EE76EB902747 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -174,7 +175,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Prolific Interactive";
 				TargetAttributes = {
 					8EF3B9B31B88DA1B007A4E5D = {
@@ -245,7 +246,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9B09ADBD7EAFD1BE147415D3 /* [CP] Embed Pods Frameworks */ = {
@@ -342,8 +343,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -387,8 +390,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -415,14 +420,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D7DD618AED2C3A37CD2A4A11 /* Pods-Bellerophon.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 5ZZ7W4SB26;
 				INFOPLIST_FILE = Bellerophon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prolificinteractive.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_MODULE_NAME = BellerophonExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -430,14 +437,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 996864517C990A000065B674 /* Pods-Bellerophon.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 5ZZ7W4SB26;
 				INFOPLIST_FILE = Bellerophon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prolificinteractive.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_MODULE_NAME = BellerophonExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -445,6 +455,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 5ZZ7W4SB26;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -457,7 +468,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prolificinteractive.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bellerophon.app/Bellerophon";
 			};
 			name = Debug;
@@ -466,6 +477,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 5ZZ7W4SB26;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -474,7 +486,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prolificinteractive.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bellerophon.app/Bellerophon";
 			};
 			name = Release;
