@@ -77,20 +77,20 @@ public class BellerophonManager: NSObject {
 
      - parameter completionHandler: Completion handler
      */
-    public func fetchAppStatus(_ completionHandler: (result: UIBackgroundFetchResult) -> ()) {
+    public func fetchAppStatus(_ completionHandler: (_ result: UIBackgroundFetchResult) -> ()) {
         delegate?.bellerophonStatus(self) { status, error in
             if let status = status {
                 self.handleAppStatus(status)
                 if status.apiInactive() {
                     // If the kill switch or queue-it is still active we don't need to update anything
-                    completionHandler(result: .noData)
+                    completionHandler(.noData)
                 } else {
                     // If the kill switch and queue-it are back to normal, we can stop fetching
-                    completionHandler(result: .newData)
+                    completionHandler(.newData)
                 }
             } else {
                 // An error occurred
-                completionHandler(result: .failed)
+                completionHandler(.failed)
             }
         }
     }
