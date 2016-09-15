@@ -4,9 +4,9 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
 target 'Bellerophon' do
-	pod 'Alamofire'
-	#pod 'AlamofireObjectMapper', :git => 'https://github.com/tristanhimmelman/AlamofireObjectMapper.git', :branch => 'swift-3'
-	pod 'ObjectMapper'
+	pod 'Alamofire', '4.0.0'
+	pod 'AlamofireObjectMapper', '4.0.0'
+	#pod 'ObjectMapper', '2.0.0'
 	pod 'Bellerophon', :path => "../"
 end
 

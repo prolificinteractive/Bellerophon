@@ -77,7 +77,7 @@ public class BellerophonManager: NSObject {
 
      - parameter completionHandler: Completion handler
      */
-    public func fetchAppStatus(_ completionHandler: (_ result: UIBackgroundFetchResult) -> ()) {
+    public func fetchAppStatus(_ completionHandler: @escaping (_ result: UIBackgroundFetchResult) -> ()) {
         delegate?.bellerophonStatus(self) { status, error in
             if let status = status {
                 self.handleAppStatus(status)

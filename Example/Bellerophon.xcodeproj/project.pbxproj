@@ -15,7 +15,6 @@
 		8EF3B9BF1B88DA1B007A4E5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EF3B9BD1B88DA1B007A4E5D /* Main.storyboard */; };
 		8EF3B9C11B88DA1B007A4E5D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EF3B9C01B88DA1B007A4E5D /* Images.xcassets */; };
 		8EF3B9C41B88DA1B007A4E5D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EF3B9C21B88DA1B007A4E5D /* LaunchScreen.xib */; };
-		EA1AA9960C30516CA0CBD74D /* Pods_Bellerophon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 386BF294A73E26FC2EC7343F /* Pods_Bellerophon.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +138,7 @@
 				8EF3B9B21B88DA1B007A4E5D /* Resources */,
 				9B09ADBD7EAFD1BE147415D3 /* [CP] Embed Pods Frameworks */,
 				B7D993AAEAC5CAB521D665C9 /* [CP] Copy Pods Resources */,
+				ECA4273D3E60FBF1E95CE374 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -180,6 +180,7 @@
 				TargetAttributes = {
 					8EF3B9B31B88DA1B007A4E5D = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 5ZZ7W4SB26;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -189,6 +190,7 @@
 					};
 					8EF3B9C81B88DA1B007A4E5D = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 5ZZ7W4SB26;
 						LastSwiftMigration = 0800;
 						TestTargetID = 8EF3B9B31B88DA1B007A4E5D;
 					};
@@ -277,6 +279,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bellerophon/Pods-Bellerophon-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECA4273D3E60FBF1E95CE374 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bellerophon/Pods-Bellerophon-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -369,7 +386,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -409,7 +426,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

@@ -17,8 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegat
     var window: UIWindow?
     var killSwitchURL: String?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
+    func applicationDidFinishLaunching(_ application: UIApplication) {
         killSwitchURL = "http://qa.cms.prolific.io/killswitch/status/vandelay/ios"
 
         BellerophonManager.sharedInstance.delegate = self
@@ -40,51 +39,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegat
 
         BellerophonManager.sharedInstance.killSwitchView = view
         BellerophonManager.sharedInstance.checkAppStatus()
-
-        return true
     }
 
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
-    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+    func application(_ application: UIApplication,
+                     performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         BellerophonManager.sharedInstance.fetchAppStatus { result in
             completionHandler(result)
         }
     }
 
-    @objc func bellerophonStatus(_ manager: BellerophonManager, completion: (status: BellerophonObservable?, error: NSError?) -> ()) {
+    public func bellerophonStatus(_ manager: BellerophonManager,
+                                  completion: @escaping (BellerophonObservable?, NSError?) -> ()) {
         // MAKE API CALL
         assert(killSwitchURL != nil, "Kill switch URL has to be defined.")
 
-        Alamofire.request(.GET, killSwitchURL!, parameters: nil, encoding: .JSON, headers: nil).responseObject {
-            (response: Response<💩, NSError>) in
-                completion(status: response.result.value, error: response.result.error)
+        Alamofire.request(killSwitchURL!, method: .get, parameters: nil, encoding: JSONEncoding(), headers: nil)
+            .responseObject { (response: DataResponse<💩>) in
+                completion(response.result.value, response.result.error as NSError?)
         }
     }
 
     func shouldForceUpdate() {
-        let alert = UIAlertView(title: "Force Update", message: "Force update message is received!", delegate: self, cancelButtonTitle: "Got it")
-        alert.show()
+        let alertController = UIAlertController(title: "Force Update",
+                                                message: "Force update message is received!",
+                                                preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: "Got it", style: .cancel, handler: nil)
+        alertController.addAction(cancelButton)
+
+        guard let rootViewController = window?.rootViewController else {
+            return
+        }
+
+        alertController.show(rootViewController, sender: nil)
     }
 
 }

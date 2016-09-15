@@ -22,14 +22,14 @@ class 💩: Mappable, BellerophonObservable {
     var interval: TimeInterval = 0
     var userMessageStr: String = ""
 
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         isAPIInactive <- map["apiInactive"]
         shouldForceUpdate <- map["forceUpdate"]
         interval <- map["retryInterval"]
         userMessageStr <- map["userMessage"]
     }
 
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         isAPIInactive <- map["apiInactive"]
         shouldForceUpdate <- map["forceUpdate"]
         interval <- map["retryInterval"]

@@ -16,7 +16,7 @@ import Foundation
     - parameter manager:    The Bellerophon manager.
     - parameter completion: The completion block.
     */
-    func bellerophonStatus(_ manager: BellerophonManager, completion: (_ status: BellerophonObservable?, _ error: NSError?) -> ())
+    func bellerophonStatus(_ manager: BellerophonManager, completion: @escaping (_ status: BellerophonObservable?, _ error: NSError?) -> ())
 
     /**
     The app is notified that a force update should occur. An alert should be displayed to redirect to the App Store.
