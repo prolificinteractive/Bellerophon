@@ -126,8 +126,8 @@ class BellerophonTests: XCTestCase {
 
 extension BellerophonTests: BellerophonManagerDelegate {
 
-    func bellerophonStatus(_ manager: BellerophonManager, completion: (status: BellerophonObservable?, error: NSError?) -> ()) {
-        completion(status: responseArray[currentIdx], error: nil)
+    func bellerophonStatus(_ manager: BellerophonManager, completion: @escaping (BellerophonObservable?, NSError?) -> ()) {
+        completion(responseArray[currentIdx], nil)
     }
 
     func shouldForceUpdate() {

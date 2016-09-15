@@ -26,7 +26,7 @@ This is a kill switch
   s.author           = { "Thibault Klein" => "thibault@prolificinteractive.com" }
   s.source           = { :git => "https://github.com/prolificinteractive/Bellerophon.git", :tag => s.version.to_s }
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '9.0'
   s.requires_arc = true
 
   s.source_files = 'Bellerophon/Bellerophon/Sources/**/*.{swift}'

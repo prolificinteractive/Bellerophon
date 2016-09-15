@@ -174,10 +174,12 @@
 				TargetAttributes = {
 					8EED59C71C40194500CB3223 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 5ZZ7W4SB26;
 						LastSwiftMigration = 0800;
 					};
 					ABADBB921CCA92580057F491 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 5ZZ7W4SB26;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -289,7 +291,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -333,7 +335,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
