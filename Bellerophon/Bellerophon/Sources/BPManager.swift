@@ -17,11 +17,14 @@ public class BellerophonManager: NSObject {
     public static let sharedInstance = BellerophonManager()
     override internal init() {
         super.init()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector(stopTimer()), name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(stopTimer),
+                                               name: NSNotification.Name.UIApplicationDidEnterBackground,
+                                               object: nil)
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: Public properties
@@ -42,7 +45,7 @@ public class BellerophonManager: NSObject {
         return window
     }()
     internal var requestPending = false
-    internal var retryTimer: NSTimer?
+    internal var retryTimer: Timer?
 
     // MARK: Public Methods
 
@@ -74,27 +77,27 @@ public class BellerophonManager: NSObject {
 
      - parameter completionHandler: Completion handler
      */
-    public func fetchAppStatus(completionHandler: (result: UIBackgroundFetchResult) -> ()) {
+    public func fetchAppStatus(_ completionHandler: @escaping (_ result: UIBackgroundFetchResult) -> ()) {
         delegate?.bellerophonStatus(self) { status, error in
             if let status = status {
                 self.handleAppStatus(status)
                 if status.apiInactive() {
                     // If the kill switch or queue-it is still active we don't need to update anything
-                    completionHandler(result: .NoData)
+                    completionHandler(.noData)
                 } else {
                     // If the kill switch and queue-it are back to normal, we can stop fetching
-                    completionHandler(result: .NewData)
+                    completionHandler(.newData)
                 }
             } else {
                 // An error occurred
-                completionHandler(result: .Failed)
+                completionHandler(.failed)
             }
         }
     }
 
     // MARK: internal Methods
 
-    internal func handleAppStatus(status: BellerophonObservable) {
+    internal func handleAppStatus(_ status: BellerophonObservable) {
         if status.forceUpdate() {
             performForceUpdate()
         } else if status.apiInactive() {
@@ -115,7 +118,7 @@ public class BellerophonManager: NSObject {
     }
 
     internal func displayKillSwitch() {
-        if !killSwitchWindow.keyWindow {
+        if !killSwitchWindow.isKeyWindow {
             killSwitchView.frame = killSwitchWindow.bounds
             delegate?.bellerophonWillEngage?(self)
             killSwitchWindow.makeKeyAndVisible()
@@ -123,16 +126,16 @@ public class BellerophonManager: NSObject {
     }
 
     internal func dismissKillSwitchIfNeeded() {
-        if killSwitchWindow.keyWindow {
+        if killSwitchWindow.isKeyWindow {
             delegate?.bellerophonWillDisengage?(self)
-            if let mainWindow = UIApplication.sharedApplication().delegate?.window {
+            if let mainWindow = UIApplication.shared.delegate?.window {
                 mainWindow?.makeKeyAndVisible()
             }
-            killSwitchWindow.hidden = true
+            killSwitchWindow.isHidden = true
         }
     }
 
-    internal func startAutoChecking(status: BellerophonObservable) {
+    internal func startAutoChecking(_ status: BellerophonObservable) {
         if retryTimer == nil {
             retryTimer = BellerophonHelperMethods.timerWithStatus(status, target: self, selector: #selector(BellerophonManager.checkAppStatus))
         }

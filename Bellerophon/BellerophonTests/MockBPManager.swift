@@ -19,7 +19,7 @@ class MockBPManager: BellerophonManager {
         displayKillSwitchIsCalled = true
     }
     
-    override func startAutoChecking(status: BellerophonObservable) {
+    override func startAutoChecking(_ status: BellerophonObservable) {
         startAutoCheckingIsCalled = true
     }
     

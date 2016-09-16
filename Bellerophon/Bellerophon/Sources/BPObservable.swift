@@ -29,7 +29,7 @@ import Foundation
 
     - returns: A time interval.
     */
-    func retryInterval() -> NSTimeInterval
+    func retryInterval() -> TimeInterval
 
     /**
     Indicates the message to display to the custom view presented when the API is inactive.
@@ -38,12 +38,12 @@ import Foundation
     */
     func userMessage() -> String
 
-    optional
+    @objc optional
     /**
     Set the user message to your custom view.
 
     - parameter message: The message to display.
     */
-    func setUserMessage(message: String)
+    func setUserMessage(_ message: String)
 
 }

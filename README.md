@@ -17,8 +17,8 @@ Bellerophon is a Swift implementation of a protocol and convenient methods that 
 
 ## Requirements
 
-* iOS 8.0+
-* Xcode 7.3+
+* iOS 9.0+
+* Xcode 8.0+
 
 ## Installation ##
 
@@ -90,13 +90,10 @@ class BellerophonModel: BellerophonObservable { }
 6 - Now that you have your model, you are ready to implement the `BellerophonManagerDelegate` methods in your App Delegate.
 
 ```swift
-func bellerophonStatus(manager: BellerophonManager, completion: (status: BellerophonObservable?, error: NSError?) -> ()) {
-	// MAKE API CALL
-	APIManager.GET() { (status, error)
-		// Send the API data to the Bellerophon manager.
-		completion(status: status, error: error)
-		}
-	}
+func bellerophonStatus(_ manager: BellerophonManager, completion: @escaping (BellerophonObservable?, NSError?) -> ()) {
+	Alamofire.request(killSwitchURL!, method: .get, parameters: nil, encoding: JSONEncoding(), headers: nil).responseObject { (response: DataResponse<💩>) in
+		completion(response.result.value, response.result.error as NSError?)
+    }
 }
 
 func shouldForceUpdate() {

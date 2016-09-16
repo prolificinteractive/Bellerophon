@@ -10,7 +10,7 @@
 
 class BellerophonResponse: BellerophonObservable {
     
-    init(isAPIInactive: Bool, shouldForceUpdate: Bool, interval: NSTimeInterval, userMessageStr: String) {
+    init(isAPIInactive: Bool, shouldForceUpdate: Bool, interval: TimeInterval, userMessageStr: String) {
         self.isAPIInactive = isAPIInactive
         self.shouldForceUpdate = shouldForceUpdate
         self.interval = interval
@@ -19,7 +19,7 @@ class BellerophonResponse: BellerophonObservable {
     
     var isAPIInactive: Bool = false
     var shouldForceUpdate: Bool = false
-    var interval: NSTimeInterval = 0
+    var interval: TimeInterval = 0
     var userMessageStr: String = ""
     
     @objc func apiInactive() -> Bool {
@@ -30,7 +30,7 @@ class BellerophonResponse: BellerophonObservable {
         return shouldForceUpdate
     }
     
-    @objc func retryInterval() -> NSTimeInterval {
+    @objc func retryInterval() -> TimeInterval {
         return interval
     }
     

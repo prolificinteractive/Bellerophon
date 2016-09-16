@@ -9,23 +9,12 @@
 /* Begin PBXBuildFile section */
 		4D5A3E3F077D5C6F348EE362 /* Pods_Bellerophon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85D75D338670194960FB348C /* Pods_Bellerophon.framework */; };
 		8E0915F01B8903FB00ED7FC4 /* BellerophonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0915EF1B8903FB00ED7FC4 /* BellerophonModel.swift */; };
-		8E0915F11B8903FB00ED7FC4 /* BellerophonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0915EF1B8903FB00ED7FC4 /* BellerophonModel.swift */; };
 		8EF3B9BA1B88DA1B007A4E5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF3B9B91B88DA1B007A4E5D /* AppDelegate.swift */; };
 		8EF3B9BC1B88DA1B007A4E5D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF3B9BB1B88DA1B007A4E5D /* ViewController.swift */; };
 		8EF3B9BF1B88DA1B007A4E5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EF3B9BD1B88DA1B007A4E5D /* Main.storyboard */; };
 		8EF3B9C11B88DA1B007A4E5D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EF3B9C01B88DA1B007A4E5D /* Images.xcassets */; };
 		8EF3B9C41B88DA1B007A4E5D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EF3B9C21B88DA1B007A4E5D /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		8EF3B9CA1B88DA1B007A4E5D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8EF3B9AC1B88DA1B007A4E5D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8EF3B9B31B88DA1B007A4E5D;
-			remoteInfo = Bellerophon;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3FEDDAF70F6FE7454723AE6E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -38,7 +27,6 @@
 		8EF3B9BE1B88DA1B007A4E5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8EF3B9C01B88DA1B007A4E5D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8EF3B9C31B88DA1B007A4E5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		8EF3B9C91B88DA1B007A4E5D /* BellerophonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BellerophonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		996864517C990A000065B674 /* Pods-Bellerophon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bellerophon.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bellerophon/Pods-Bellerophon.release.xcconfig"; sourceTree = "<group>"; };
 		9C29D0C65208BD37E4CBB251 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF00D8CCFF78D904A17A0CB4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -54,13 +42,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8EF3B9C61B88DA1B007A4E5D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -73,7 +54,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4CB44AE196BB6C123E8A0615 /* Pods */ = {
+		8E1C7505A531EE76EB902747 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				3FEDDAF70F6FE7454723AE6E /* Pods.debug.xcconfig */,
@@ -89,8 +70,8 @@
 			children = (
 				8EF3B9B61B88DA1B007A4E5D /* Bellerophon */,
 				8EF3B9B51B88DA1B007A4E5D /* Products */,
-				4CB44AE196BB6C123E8A0615 /* Pods */,
 				45E991FA62276E808EB241C6 /* Frameworks */,
+				8E1C7505A531EE76EB902747 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,7 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				8EF3B9B41B88DA1B007A4E5D /* Bellerophon.app */,
-				8EF3B9C91B88DA1B007A4E5D /* BellerophonTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,6 +118,7 @@
 				8EF3B9B21B88DA1B007A4E5D /* Resources */,
 				9B09ADBD7EAFD1BE147415D3 /* [CP] Embed Pods Frameworks */,
 				B7D993AAEAC5CAB521D665C9 /* [CP] Copy Pods Resources */,
+				ECA4273D3E60FBF1E95CE374 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -148,24 +129,6 @@
 			productReference = 8EF3B9B41B88DA1B007A4E5D /* Bellerophon.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8EF3B9C81B88DA1B007A4E5D /* BellerophonTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8EF3B9D61B88DA1B007A4E5D /* Build configuration list for PBXNativeTarget "BellerophonTests" */;
-			buildPhases = (
-				8EF3B9C51B88DA1B007A4E5D /* Sources */,
-				8EF3B9C61B88DA1B007A4E5D /* Frameworks */,
-				8EF3B9C71B88DA1B007A4E5D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8EF3B9CB1B88DA1B007A4E5D /* PBXTargetDependency */,
-			);
-			name = BellerophonTests;
-			productName = BellerophonTests;
-			productReference = 8EF3B9C91B88DA1B007A4E5D /* BellerophonTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -174,22 +137,18 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Prolific Interactive";
 				TargetAttributes = {
 					8EF3B9B31B88DA1B007A4E5D = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 5ZZ7W4SB26;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
 						};
-					};
-					8EF3B9C81B88DA1B007A4E5D = {
-						CreatedOnToolsVersion = 6.4;
-						LastSwiftMigration = 0800;
-						TestTargetID = 8EF3B9B31B88DA1B007A4E5D;
 					};
 				};
 			};
@@ -207,7 +166,6 @@
 			projectRoot = "";
 			targets = (
 				8EF3B9B31B88DA1B007A4E5D /* Bellerophon */,
-				8EF3B9C81B88DA1B007A4E5D /* BellerophonTests */,
 			);
 		};
 /* End PBXProject section */
@@ -220,13 +178,6 @@
 				8EF3B9BF1B88DA1B007A4E5D /* Main.storyboard in Resources */,
 				8EF3B9C41B88DA1B007A4E5D /* LaunchScreen.xib in Resources */,
 				8EF3B9C11B88DA1B007A4E5D /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8EF3B9C71B88DA1B007A4E5D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,7 +196,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9B09ADBD7EAFD1BE147415D3 /* [CP] Embed Pods Frameworks */ = {
@@ -278,6 +229,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bellerophon/Pods-Bellerophon-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		ECA4273D3E60FBF1E95CE374 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bellerophon/Pods-Bellerophon-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -291,23 +257,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8EF3B9C51B88DA1B007A4E5D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8E0915F11B8903FB00ED7FC4 /* BellerophonModel.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		8EF3B9CB1B88DA1B007A4E5D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8EF3B9B31B88DA1B007A4E5D /* Bellerophon */;
-			targetProxy = 8EF3B9CA1B88DA1B007A4E5D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8EF3B9BD1B88DA1B007A4E5D /* Main.storyboard */ = {
@@ -342,8 +292,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -366,7 +318,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -387,8 +339,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -404,7 +358,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -415,14 +369,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D7DD618AED2C3A37CD2A4A11 /* Pods-Bellerophon.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 5ZZ7W4SB26;
 				INFOPLIST_FILE = Bellerophon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prolificinteractive.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_MODULE_NAME = BellerophonExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -430,52 +386,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 996864517C990A000065B674 /* Pods-Bellerophon.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 5ZZ7W4SB26;
 				INFOPLIST_FILE = Bellerophon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prolificinteractive.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_MODULE_NAME = BellerophonExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
-			};
-			name = Release;
-		};
-		8EF3B9D71B88DA1B007A4E5D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = BellerophonTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prolificinteractive.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bellerophon.app/Bellerophon";
-			};
-			name = Debug;
-		};
-		8EF3B9D81B88DA1B007A4E5D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = BellerophonTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prolificinteractive.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bellerophon.app/Bellerophon";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -496,15 +417,6 @@
 			buildConfigurations = (
 				8EF3B9D41B88DA1B007A4E5D /* Debug */,
 				8EF3B9D51B88DA1B007A4E5D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8EF3B9D61B88DA1B007A4E5D /* Build configuration list for PBXNativeTarget "BellerophonTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8EF3B9D71B88DA1B007A4E5D /* Debug */,
-				8EF3B9D81B88DA1B007A4E5D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

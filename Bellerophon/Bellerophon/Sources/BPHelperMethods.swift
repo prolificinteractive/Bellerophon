@@ -13,16 +13,16 @@ public struct BellerophonHelperMethods {
 
     // MARK: Helper Methods
     public static func screenSize() -> CGSize {
-        return UIScreen.mainScreen().bounds.size
+        return UIScreen.main.bounds.size
     }
 
     public static func newWindow() -> UIWindow {
-        return UIWindow(frame: CGRectMake(0.0, 0.0, screenSize().width, screenSize().height))
+        return UIWindow(frame: CGRect(x: 0.0, y: 0.0, width: screenSize().width, height: screenSize().height))
     }
 
-    public static func timerWithStatus(status: BellerophonObservable, target: AnyObject, selector: Selector) -> NSTimer {
-        return NSTimer.scheduledTimerWithTimeInterval(
-            status.retryInterval(),
+    public static func timerWithStatus(_ status: BellerophonObservable, target: AnyObject, selector: Selector) -> Timer {
+        return Timer.scheduledTimer(
+            timeInterval: status.retryInterval(),
             target: target,
             selector: selector,
             userInfo: nil,
