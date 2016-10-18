@@ -133,4 +133,5 @@ extension BellerophonTests: BellerophonManagerDelegate {
     func shouldForceUpdate() {
         shouldForceUpdateIsCalled = true
     }
+
 }

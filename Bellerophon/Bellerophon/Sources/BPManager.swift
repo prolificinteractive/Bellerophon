@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-public class BellerophonManager: NSObject {
+/// Bellerophon manager.
+public class BellerophonManager {
 
     // MARK: Singleton instance
 
     /// Shared singleton instance of BellerophonManager
     public static let sharedInstance = BellerophonManager()
-    override internal init() {
-        super.init()
+    internal init() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector(stopTimer()), name: UIApplicationDidEnterBackgroundNotification, object: nil)
     }
 
@@ -30,7 +30,7 @@ public class BellerophonManager: NSObject {
     public var killSwitchView: UIView!
 
     /// BellerophonManager delegate
-    public weak var delegate: BellerophonManagerDelegate?
+    public var delegate: BellerophonManagerDelegate?
 
     // MARK: internal properties
     internal lazy var killSwitchWindow: UIWindow = {
@@ -49,7 +49,7 @@ public class BellerophonManager: NSObject {
     /**
      Retrieves and handles the app status from the AMS endpoint
      */
-    public func checkAppStatus() {
+    @objc public func checkAppStatus() {
         assert(killSwitchView != nil, "The kill switch view has to be defined.")
 
         if requestPending {
@@ -117,14 +117,14 @@ public class BellerophonManager: NSObject {
     internal func displayKillSwitch() {
         if !killSwitchWindow.keyWindow {
             killSwitchView.frame = killSwitchWindow.bounds
-            delegate?.bellerophonWillEngage?(self)
+            delegate?.bellerophonWillEngage(self)
             killSwitchWindow.makeKeyAndVisible()
         }
     }
 
     internal func dismissKillSwitchIfNeeded() {
         if killSwitchWindow.keyWindow {
-            delegate?.bellerophonWillDisengage?(self)
+            delegate?.bellerophonWillDisengage(self)
             if let mainWindow = UIApplication.sharedApplication().delegate?.window {
                 mainWindow?.makeKeyAndVisible()
             }
