@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27F1DB141DB5626900F31DA0 /* BPHelperMethods.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8EED59E31C40196400CB3223 /* BPHelperMethods.swift */; };
+		27F1DB151DB5626900F31DA0 /* BPManager.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8EED59E41C40196400CB3223 /* BPManager.swift */; };
+		27F1DB161DB5626900F31DA0 /* BPManagerDelegate.swift in Headers */ = {isa = PBXBuildFile; fileRef = ABADBB881CCA88DA0057F491 /* BPManagerDelegate.swift */; };
+		27F1DB171DB5626900F31DA0 /* BPObservable.swift in Headers */ = {isa = PBXBuildFile; fileRef = ABADBB8A1CCA88DF0057F491 /* BPObservable.swift */; };
 		8EED59CC1C40194500CB3223 /* Bellerophon.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EED59CB1C40194500CB3223 /* Bellerophon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8EED59E71C40196400CB3223 /* BPHelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EED59E31C40196400CB3223 /* BPHelperMethods.swift */; };
 		8EED59E81C40196400CB3223 /* BPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EED59E41C40196400CB3223 /* BPManager.swift */; };
@@ -120,6 +124,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EED59CC1C40194500CB3223 /* Bellerophon.h in Headers */,
+				27F1DB141DB5626900F31DA0 /* BPHelperMethods.swift in Headers */,
+				27F1DB151DB5626900F31DA0 /* BPManager.swift in Headers */,
+				27F1DB161DB5626900F31DA0 /* BPManagerDelegate.swift in Headers */,
+				27F1DB171DB5626900F31DA0 /* BPObservable.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +344,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
