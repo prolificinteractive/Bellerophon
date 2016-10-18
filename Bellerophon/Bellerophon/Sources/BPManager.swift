@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/// Bellerophon manager.
 public class BellerophonManager {
 
     // MARK: Singleton instance

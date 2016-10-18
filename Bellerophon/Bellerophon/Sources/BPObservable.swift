@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Bellerophon observable protocol. Describes how to observe Bellerophon updates.
 public protocol BellerophonObservable {
 
     /**

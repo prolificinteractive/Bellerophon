@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Bellerophon manager delegate.
 public protocol BellerophonManagerDelegate {
 
     /**
@@ -37,4 +38,22 @@ public protocol BellerophonManagerDelegate {
      */
     func bellerophonWillDisengage(manager: BellerophonManager)
     
+}
+
+public extension BellerophonManagerDelegate {
+
+    /**
+     Indicates that Bellerophon is about to appear on the screen.
+
+     - parameter manager: The Bellerophon manager.
+     */
+    func bellerophonWillEngage(manager: BellerophonManager) { }
+
+    /**
+     Indicates that Bellerophon is about to disappear from the screen.
+
+     - parameter manager: The Bellerophon manager.
+     */
+    func bellerophonWillDisengage(manager: BellerophonManager) { }
+
 }
