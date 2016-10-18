@@ -8,42 +8,52 @@
 
 import Foundation
 
-@objc public protocol BellerophonObservable {
+public protocol BellerophonObservable {
 
     /**
-    Is the API is active or inactive?
+     Is the API is active or inactive?
 
-    - returns: YES if the API is inactive. A specific view should be presented. NO if not.
-    */
+     - returns: YES if the API is inactive. A specific view should be presented. NO if not.
+     */
     func apiInactive() -> Bool
 
     /**
-    Is the app should force the user to update?
+     Is the app should force the user to update?
 
-    - returns: YES if the API should force the user to update. An alert redirecting to the App Store should be presented. NO if not.
-    */
+     - returns: YES if the API should force the user to update. An alert redirecting to the App Store should be presented. NO if not.
+     */
     func forceUpdate() -> Bool
 
     /**
-    Indicates the retry interval for the app to hit the status endpoint.
+     Indicates the retry interval for the app to hit the status endpoint.
 
-    - returns: A time interval.
-    */
+     - returns: A time interval.
+     */
     func retryInterval() -> NSTimeInterval
 
     /**
-    Indicates the message to display to the custom view presented when the API is inactive.
+     Indicates the message to display to the custom view presented when the API is inactive.
 
-    - returns: The user message to display.
-    */
+     - returns: The user message to display.
+     */
     func userMessage() -> String
 
-    optional
     /**
-    Set the user message to your custom view.
+     Set the user message to your custom view.
 
-    - parameter message: The message to display.
-    */
+     - parameter message: The message to display.
+     */
     func setUserMessage(message: String)
+    
+}
+
+public extension BellerophonObservable {
+
+    /**
+     Set the user message to your custom view.
+
+     - parameter message: The message to display.
+     */
+    func setUserMessage(message: String) { }
 
 }
