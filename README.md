@@ -116,10 +116,24 @@ The specifications that we are using at Prolific Interactive are this one:
 {
     "apiInactive": false,
     "forceUpdate": false,
-    "retryInterval": null,
+    "retryInterval": 15,
     "userMessage": null
 }
 ```
+
+* `apiInactive`
+    * Determines if the API is active or not. If it is `true` the App UI should be blocked until this is `false`.
+    * Required, type: boolean
+* `forceUpdate`
+    * Determines if the App should force the user to update to the latest version. This should be used very sparingly.
+    Only in emergencies or non supported app versions.
+    * Required, type: boolean
+* `retryInterval`
+    * The time in seconds to wait to ping this endpoint until `apiInactive` is set to `false`.
+    * Required, type: integer
+* `userMessage`
+    * A message to describe the issue that is going on.
+    * Optional, type: string
 
 
 ### How to test? ###
