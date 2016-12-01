@@ -5,7 +5,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/Bellerophon.svg?style=flat-square)](http://cocoadocs.org/docsets/Bellerophon)
 [![Docs](https://img.shields.io/cocoapods/metrics/doc-percent/Bellerophon.svg?style=flat-square)](http://cocoadocs.org/docsets/Bellerophon)
 
-![Bellerophon fighting Chimera](http://www1.artflakes.com/artwork/products/246494/poster/246494.jpg)
+![Bellerophon fighting Chimera](Images/bellerophon.jpg)
 
 Bellerophon is a hero of Greek mythology. He was *"the greatest hero and slayer of monsters, alongside Cadmus and Perseus, before the days of Heracles"*, and his greatest feat was killing the **Chimera**, a monster that Homer depicted with a lion's head, a goat's body, and a serpent's tail.
 
