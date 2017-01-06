@@ -98,6 +98,27 @@ public class BellerophonManager: NSObject {
     // MARK: internal Methods
 
     internal func handleAppStatus(_ status: BellerophonObservable) {
+        if status.killSwitchPriority() {
+            killSwitchPriority(status: status)
+        } else {
+            forceUpgradePriority(status: status)
+        }
+    }
+
+    internal func killSwitchPriority(status: BellerophonObservable) {
+        if status.apiInactive() {
+            displayKillSwitch()
+            startAutoChecking(status)
+        } else {
+            dismissKillSwitchIfNeeded()
+        }
+
+        if status.forceUpdate() {
+            performForceUpdate()
+        }
+    }
+
+    internal func forceUpgradePriority(status: BellerophonObservable) {
         if status.forceUpdate() {
             performForceUpdate()
         } else if status.apiInactive() {

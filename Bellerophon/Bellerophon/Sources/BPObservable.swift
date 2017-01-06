@@ -46,4 +46,11 @@ import Foundation
     */
     func setUserMessage(_ message: String)
 
+    /**
+     Whether the kill switch view should be a priority.
+
+     - returns: Whether the kill switch view has priority. By default this value is false.
+     */
+    func killSwitchPriority() -> Bool
+
 }
