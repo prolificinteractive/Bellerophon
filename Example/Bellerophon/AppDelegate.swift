@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import AlamofireObjectMapper
 import Bellerophon
 
 @UIApplicationMain
@@ -52,9 +51,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegat
     public func bellerophonStatus(_ manager: BellerophonManager,
                                   completion: @escaping (BellerophonObservable?, NSError?) -> ()) {
         // MAKE API CALL
-        Alamofire.request(killSwitchURL, method: .get, parameters: nil, encoding: JSONEncoding(), headers: nil)
-            .responseObject { (response: DataResponse<💩>) in
-                completion(response.result.value, response.result.error as NSError?)
+        Alamofire.request(killSwitchURL,
+                          method: .get,
+                          parameters: nil,
+                          encoding: JSONEncoding(),
+                          headers: nil)
+            .responseJSON { (response) in
+                if let json = response.result.value as? JSON {
+                    let model = BellerophonModel(json: json)
+                    completion(model, nil)
+                } else if let error = response.result.error as NSError? {
+                    completion(nil, error)
+                }
         }
     }
 

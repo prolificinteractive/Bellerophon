@@ -7,7 +7,8 @@
 //
 
 import Bellerophon
-import ObjectMapper
+
+typealias JSON = [String: Any]
 
 //{
 //    "apiInactive": false,
@@ -15,25 +16,28 @@ import ObjectMapper
 //    "retryInterval": null,
 //    "userMessage": null
 //}
-class 💩: Mappable, BellerophonObservable {
+class BellerophonModel: BellerophonObservable {
 
-    var isAPIInactive: Bool = false
-    var shouldForceUpdate: Bool = false
-    var interval: TimeInterval = 0
-    var userMessageStr: String = ""
+    let isAPIInactive: Bool
+    let shouldForceUpdate: Bool
+    let interval: TimeInterval
+    let userMessageStr: String
 
-    required init?(map: Map) {
-        isAPIInactive <- map["apiInactive"]
-        shouldForceUpdate <- map["forceUpdate"]
-        interval <- map["retryInterval"]
-        userMessageStr <- map["userMessage"]
-    }
+    required init?(json: JSON) {
+        isAPIInactive = json["apiInactive"] as? Bool ?? false
+        shouldForceUpdate = json["forceUpdate"] as? Bool ?? false
 
-    func mapping(map: Map) {
-        isAPIInactive <- map["apiInactive"]
-        shouldForceUpdate <- map["forceUpdate"]
-        interval <- map["retryInterval"]
-        userMessageStr <- map["userMessage"]
+        guard let retryInterval = json["retryInterval"] as? TimeInterval else {
+            return nil
+        }
+
+        self.interval = retryInterval
+
+        guard let userMessage = json["userMessage"] as? String else {
+            return nil
+        }
+
+        self.userMessageStr = userMessage
     }
 
     @objc func apiInactive() -> Bool {
