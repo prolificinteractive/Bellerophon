@@ -9,7 +9,7 @@
 @testable import Bellerophon
 
 class MockBPManager: BellerophonManager {
-    static let mockSharedInstance = MockBPManager()
+    static let mockSharedInstance = MockBPManager(window: UIWindow())
     
     var displayKillSwitchIsCalled: Bool!
     var startAutoCheckingIsCalled: Bool!
