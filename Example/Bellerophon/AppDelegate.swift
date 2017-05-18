@@ -15,13 +15,10 @@ import Bellerophon
 class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegate {
 
     var window: UIWindow?
-    var killSwitchURL: String?
+    let killSwitchURL = "http://qa.cms.prolific.io/killswitch/status/vandelay/ios"
+    private var killSwitchManager: BellerophonManager?
 
     func applicationDidFinishLaunching(_ application: UIApplication) {
-        killSwitchURL = "http://qa.cms.prolific.io/killswitch/status/vandelay/ios"
-
-        BellerophonManager.sharedInstance.delegate = self
-
         let screenSize = UIScreen.main.bounds.size
         let view = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height))
 
@@ -37,13 +34,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegat
         label.text = "Bummer! The App is currently unavailable check back in a little while."
         view.addSubview(label)
 
-        BellerophonManager.sharedInstance.killSwitchView = view
-        BellerophonManager.sharedInstance.checkAppStatus()
+        if let window = window {
+            killSwitchManager = BellerophonManager(window: window)
+            killSwitchManager?.delegate = self
+            killSwitchManager?.killSwitchView = view
+            killSwitchManager?.checkAppStatus()
+        }
     }
 
     func application(_ application: UIApplication,
                      performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        BellerophonManager.sharedInstance.fetchAppStatus { result in
+        killSwitchManager?.fetchAppStatus { result in
             completionHandler(result)
         }
     }
@@ -51,9 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegat
     public func bellerophonStatus(_ manager: BellerophonManager,
                                   completion: @escaping (BellerophonObservable?, NSError?) -> ()) {
         // MAKE API CALL
-        assert(killSwitchURL != nil, "Kill switch URL has to be defined.")
-
-        Alamofire.request(killSwitchURL!, method: .get, parameters: nil, encoding: JSONEncoding(), headers: nil)
+        Alamofire.request(killSwitchURL, method: .get, parameters: nil, encoding: JSONEncoding(), headers: nil)
             .responseObject { (response: DataResponse<💩>) in
                 completion(response.result.value, response.result.error as NSError?)
         }

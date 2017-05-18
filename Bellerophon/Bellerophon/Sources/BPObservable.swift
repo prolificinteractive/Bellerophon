@@ -6,8 +6,7 @@
 //  Copyright (c) 2015 Prolific Interactive. All rights reserved.
 //
 
-import Foundation
-
+/// The Bellerophon observable.
 @objc public protocol BellerophonObservable {
 
     /**

@@ -6,17 +6,20 @@
 //  Copyright (c) 2015 Prolific Interactive. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
+/// The Bellerophon manager.
 public class BellerophonManager: NSObject {
 
-    // MARK: Singleton instance
+    // MARK: - Initializers
 
-    /// Shared singleton instance of BellerophonManager
-    public static let sharedInstance = BellerophonManager()
-    override internal init() {
+    /// The default initializer.
+    ///
+    /// - Parameter window: The root window.
+    public init(window: UIWindow) {
         super.init()
+        mainWindow = window
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(stopTimer),
                                                name: NSNotification.Name.UIApplicationDidEnterBackground,
@@ -27,7 +30,7 @@ public class BellerophonManager: NSObject {
         NotificationCenter.default.removeObserver(self)
     }
 
-    // MARK: Public properties
+    // MARK: - Properties
 
     /// View to be shown when the kill switch is turned on. Must be set by the application using Bellerophon
     public var killSwitchView: UIView!
@@ -36,14 +39,20 @@ public class BellerophonManager: NSObject {
     public weak var delegate: BellerophonManagerDelegate?
 
     // MARK: internal properties
+
+    /// The kill switch window.
     internal lazy var killSwitchWindow: UIWindow = {
         let window = BellerophonHelperMethods.newWindow()
         window.windowLevel = UIWindowLevelAlert
         let rootViewController = UIViewController()
         rootViewController.view.addSubview(self.killSwitchView)
         window.rootViewController = rootViewController
+
         return window
     }()
+
+    private weak var mainWindow: UIWindow?
+
     internal var requestPending = false
     internal var retryTimer: Timer?
 
@@ -55,8 +64,8 @@ public class BellerophonManager: NSObject {
     public func checkAppStatus() {
         assert(killSwitchView != nil, "The kill switch view has to be defined.")
 
-        if requestPending {
-            return;
+        guard !requestPending else {
+            return
         }
 
         requestPending = true
@@ -118,26 +127,30 @@ public class BellerophonManager: NSObject {
     }
 
     internal func displayKillSwitch() {
-        if !killSwitchWindow.isKeyWindow {
-            killSwitchView.frame = killSwitchWindow.bounds
-            delegate?.bellerophonWillEngage?(self)
-            killSwitchWindow.makeKeyAndVisible()
+        guard !killSwitchWindow.isKeyWindow else {
+            return
         }
+
+        killSwitchView.frame = killSwitchWindow.bounds
+        delegate?.bellerophonWillEngage?(self)
+        killSwitchWindow.makeKeyAndVisible()
     }
 
     internal func dismissKillSwitchIfNeeded() {
-        if killSwitchWindow.isKeyWindow {
-            delegate?.bellerophonWillDisengage?(self)
-            if let mainWindow = UIApplication.shared.delegate?.window {
-                mainWindow?.makeKeyAndVisible()
-            }
-            killSwitchWindow.isHidden = true
+        guard killSwitchWindow.isKeyWindow else {
+            return
         }
+
+        delegate?.bellerophonWillDisengage?(self)
+        mainWindow?.makeKeyAndVisible()
+        killSwitchWindow.isHidden = true
     }
 
     internal func startAutoChecking(_ status: BellerophonObservable) {
         if retryTimer == nil {
-            retryTimer = BellerophonHelperMethods.timerWithStatus(status, target: self, selector: #selector(BellerophonManager.checkAppStatus))
+            retryTimer = BellerophonHelperMethods.timerWithStatus(status,
+                                                                  target: self,
+                                                                  selector: #selector(BellerophonManager.checkAppStatus))
         }
     }
 }
