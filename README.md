@@ -49,14 +49,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegat
 2 - Implement and configure the Bellerophon shared manager by setting the delegate property and the kill switch view.
 
 ```swift
-BellerophonManager.sharedInstance.delegate = self
-BellerophonManager.sharedInstance.killSwitchView = <YOUR_VIEW>
+let killSwitchManager = BellerophonManager(window: window)
+killSwitchManager.delegate = self
+killSwitchManager.killSwitchView = <YOUR_VIEW>
 ```
 
 3 - Start the check the app status
 
 ```swift
-BellerophonManager.sharedInstance.checkAppStatus()
+killSwitchManager.checkAppStatus()
 ```
 
 Here is for the Bellerophon basic implementation. Now you will need to create your own model that conforms to the Bellerophon status protocol, `BellerophonObservable`.
@@ -90,9 +91,21 @@ class BellerophonModel: BellerophonObservable { }
 6 - Now that you have your model, you are ready to implement the `BellerophonManagerDelegate` methods in your App Delegate.
 
 ```swift
-func bellerophonStatus(_ manager: BellerophonManager, completion: @escaping (BellerophonObservable?, NSError?) -> ()) {
-	Alamofire.request(killSwitchURL!, method: .get, parameters: nil, encoding: JSONEncoding(), headers: nil).responseObject { (response: DataResponse<💩>) in
-		completion(response.result.value, response.result.error as NSError?)
+func bellerophonStatus(_ manager: BellerophonManager,
+                                  completion: @escaping (BellerophonObservable?, NSError?) -> ()) {
+    // MAKE API CALL
+    Alamofire.request(killSwitchURL,
+                      method: .get,
+                      parameters: nil,
+                      encoding: JSONEncoding(),
+                      headers: nil)
+        .responseJSON { (response) in
+            if let json = response.result.value as? JSON {
+                let model = BellerophonModel(json: json)
+                completion(model, nil)
+            } else if let error = response.result.error as NSError? {
+                completion(nil, error)
+            }
     }
 }
 
