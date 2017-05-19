@@ -12,7 +12,7 @@ before_install:
 #- pod install --project-directory=Example
 - gem install bundler
 - bundle install
-- pod repo update
+- pod repo update --silent
 - pod install --project-directory=Example
 script:
 - set -o pipefail && xcodebuild test -project Bellerophon/Bellerophon.xcodeproj -scheme BellerophonTests -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.0' | xcpretty
