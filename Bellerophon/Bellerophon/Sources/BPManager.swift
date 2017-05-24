@@ -71,12 +71,14 @@ public class BellerophonManager: NSObject {
         requestPending = true
         stopTimer()
 
-        delegate?.bellerophonStatus(self) { status, error in
-            self.requestPending = false
+        delegate?.bellerophonStatus(self) { [weak self] status, error in
+            self?.requestPending = false
             if let status = status {
-                self.handleAppStatus(status)
+                self?.handleAppStatus(status)
+            } else if let error = error {
+                self?.handleError(error: error)
             } else {
-                self.dismissKillSwitchIfNeeded()
+                self?.dismissKillSwitchIfNeeded()
             }
         }
     }
@@ -124,6 +126,10 @@ public class BellerophonManager: NSObject {
 
     internal func performForceUpdate() {
         delegate?.shouldForceUpdate()
+    }
+
+    internal func handleError(error: NSError) {
+        delegate?.receivedError(error: error)
     }
 
     internal func displayKillSwitch() {

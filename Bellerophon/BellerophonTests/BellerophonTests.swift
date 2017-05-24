@@ -133,4 +133,8 @@ extension BellerophonTests: BellerophonManagerDelegate {
     func shouldForceUpdate() {
         shouldForceUpdateIsCalled = true
     }
+
+    func receivedError(error: NSError) {
+
+    }
 }

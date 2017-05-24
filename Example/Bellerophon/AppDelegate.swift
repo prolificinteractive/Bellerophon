@@ -80,5 +80,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegat
         alertController.show(rootViewController, sender: nil)
     }
 
+    func receivedError(error: NSError) {
+        // Handle error
+    }
+
 }
 
