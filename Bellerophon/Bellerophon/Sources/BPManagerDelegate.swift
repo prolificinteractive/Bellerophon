@@ -24,6 +24,11 @@
      */
     func shouldForceUpdate()
 
+    /// The app is notified when a error was received.
+    ///
+    /// - Parameter error: The error received.
+    func receivedError(error: NSError)
+
     @objc optional
     /**
      Indicates that Bellerophon is about to appear on the screen.
