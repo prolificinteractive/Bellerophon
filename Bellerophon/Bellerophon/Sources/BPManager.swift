@@ -125,7 +125,7 @@ public class BellerophonManager: NSObject {
         }
     }
 
-    internal func dismissKillSwitchIfNeeded() {
+    public func dismissKillSwitchIfNeeded() {
         if killSwitchWindow.isKeyWindow {
             delegate?.bellerophonWillDisengage?(self)
             if let mainWindow = UIApplication.shared.delegate?.window {
