@@ -105,6 +105,16 @@ public class BellerophonManager: NSObject {
             }
         }
     }
+    
+    public func dismissKillSwitchIfNeeded() {
+        guard killSwitchWindow.isKeyWindow else {
+            return
+        }
+        
+        delegate?.bellerophonWillDisengage?(self)
+        mainWindow?.makeKeyAndVisible()
+        killSwitchWindow.isHidden = true
+    }
 
     // MARK: internal Methods
 
@@ -142,15 +152,6 @@ public class BellerophonManager: NSObject {
         killSwitchWindow.makeKeyAndVisible()
     }
 
-    internal func dismissKillSwitchIfNeeded() {
-        guard killSwitchWindow.isKeyWindow else {
-            return
-        }
-
-        delegate?.bellerophonWillDisengage?(self)
-        mainWindow?.makeKeyAndVisible()
-        killSwitchWindow.isHidden = true
-    }
 
     internal func startAutoChecking(_ status: BellerophonObservable) {
         if retryTimer == nil {
