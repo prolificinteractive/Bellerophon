@@ -61,7 +61,7 @@ public class BellerophonManager: NSObject {
     /**
      Retrieves and handles the app status from the AMS endpoint
      */
-    public func checkAppStatus() {
+    @objc public func checkAppStatus() {
         assert(killSwitchView != nil, "The kill switch view has to be defined.")
 
         guard !requestPending else {
@@ -119,7 +119,7 @@ public class BellerophonManager: NSObject {
         }
     }
 
-    internal func stopTimer() {
+    @objc internal func stopTimer() {
         retryTimer?.invalidate()
         retryTimer = nil
     }
