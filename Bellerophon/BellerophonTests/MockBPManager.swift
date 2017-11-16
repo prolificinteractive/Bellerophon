@@ -15,7 +15,7 @@ class MockBPManager: BellerophonManager {
     var startAutoCheckingIsCalled: Bool!
     var dismissKillSwitchIfNeededIsCalled: Bool!
     
-    override func displayKillSwitch() {
+    override func displayKillSwitch(enableForceUpdate: Bool) {
         displayKillSwitchIsCalled = true
     }
     

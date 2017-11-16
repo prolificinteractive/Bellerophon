@@ -34,8 +34,9 @@
      Indicates that Bellerophon is about to appear on the screen.
 
      - parameter manager: The Bellerophon manager.
+     - parameter enableForceUpdate: Boolean to determine if force update should be shown
      */
-    func bellerophonWillEngage(_ manager: BellerophonManager)
+    func bellerophonWillEngage(_ manager: BellerophonManager, enableForceUpdate: Bool)
 
     @objc optional
     /**
@@ -44,5 +45,6 @@
      - parameter manager: The Bellerophon manager.
      */
     func bellerophonWillDisengage(_ manager: BellerophonManager)
-    
+
 }
+
