@@ -116,6 +116,8 @@ func shouldForceUpdate() {
 
 Your app is not ready to work with Bellerophon. If the status tells Bellerophon to kill the app, it will display a full screen view on top of everything and will keep it like that until the status API indicates that the app should work again. A timer is also starting based on the retry interval provided by the status object.
 
+Similarily, `BellerophonManager` on init provides a `shouldPresentViewForForceUpdate` parameter that, if enabled, will display a full screen view as well instead of triggering `shouldForceUpdate`.
+
 Your API and model should be able to indicate at least these informations :
 
 * Is the API active or inactive?

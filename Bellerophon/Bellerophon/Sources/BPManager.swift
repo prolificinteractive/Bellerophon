@@ -16,9 +16,11 @@ public class BellerophonManager: NSObject {
     /// The default initializer.
     ///
     /// - Parameter window: The root window.
-    public init(window: UIWindow) {
+    /// - Parameter shouldPresentViewForForceUpdate: If enabled, force update would also present a view taking over the screen
+    public init(window: UIWindow, shouldPresentViewForForceUpdate: Bool = false) {
         super.init()
         mainWindow = window
+        self.shouldPresentViewForForceUpdate = shouldPresentViewForForceUpdate
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(stopTimer),
@@ -52,6 +54,9 @@ public class BellerophonManager: NSObject {
     }()
 
     private weak var mainWindow: UIWindow?
+
+    /// Determines if view should be presented for force update instead of triggerring `performForceUpdate` method
+    private var shouldPresentViewForForceUpdate = false
 
     internal var requestPending = false
     internal var retryTimer: Timer?
@@ -110,9 +115,14 @@ public class BellerophonManager: NSObject {
 
     internal func handleAppStatus(_ status: BellerophonObservable) {
         if status.forceUpdate() {
-            performForceUpdate()
+            if shouldPresentViewForForceUpdate {
+                displayKillSwitch(enableForceUpdate: true)
+                startAutoChecking(status)
+            } else {
+                performForceUpdate()
+            }
         } else if status.apiInactive() {
-            displayKillSwitch()
+            displayKillSwitch(enableForceUpdate: false)
             startAutoChecking(status)
         } else {
             dismissKillSwitchIfNeeded()
@@ -132,13 +142,13 @@ public class BellerophonManager: NSObject {
         delegate?.receivedError(error: error)
     }
 
-    internal func displayKillSwitch() {
+    internal func displayKillSwitch(enableForceUpdate: Bool) {
         guard !killSwitchWindow.isKeyWindow else {
             return
         }
 
         killSwitchView.frame = killSwitchWindow.bounds
-        delegate?.bellerophonWillEngage?(self)
+        delegate?.bellerophonWillEngage?(self, enableForceUpdate: enableForceUpdate)
         killSwitchWindow.makeKeyAndVisible()
     }
 
@@ -160,3 +170,4 @@ public class BellerophonManager: NSObject {
         }
     }
 }
+
