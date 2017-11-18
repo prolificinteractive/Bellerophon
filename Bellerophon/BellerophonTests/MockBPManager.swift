@@ -9,14 +9,21 @@
 @testable import Bellerophon
 
 class MockBPManager: BellerophonManager {
-    static let mockSharedInstance = MockBPManager(window: UIWindow())
     
     var displayKillSwitchIsCalled: Bool!
+    var displayForceUpdateIsCalled: Bool!
     var startAutoCheckingIsCalled: Bool!
     var dismissKillSwitchIfNeededIsCalled: Bool!
     
-    override func displayKillSwitch() {
-        displayKillSwitchIsCalled = true
+    override func displayWindowIfPossible(for event: BellerophonEvent) {
+        switch event {
+        case .killSwitch:
+            displayKillSwitchIsCalled = true
+            displayForceUpdateIsCalled = false
+        case .forceUpdate:
+            displayForceUpdateIsCalled = true
+            displayKillSwitchIsCalled = false
+        }
     }
     
     override func startAutoChecking(_ status: BellerophonObservable) {

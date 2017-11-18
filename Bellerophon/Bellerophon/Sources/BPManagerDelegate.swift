@@ -19,10 +19,17 @@
                            completion: @escaping (_ status: BellerophonObservable?,
         _ error: NSError?) -> ())
 
+    @objc optional
     /**
      The app is notified that a force update should occur. An alert should be displayed to redirect to the App Store.
      */
     func shouldForceUpdate()
+
+    @objc optional
+    /**
+     The app is notified that a kill switch should occur.
+     */
+    func shouldKillSwitch()
 
     /// The app is notified when a error was received.
     ///
@@ -34,15 +41,17 @@
      Indicates that Bellerophon is about to appear on the screen.
 
      - parameter manager: The Bellerophon manager.
+     - parameter event: BellerophonEvent that will engage
      */
-    func bellerophonWillEngage(_ manager: BellerophonManager)
+    func bellerophonWillEngage(_ manager: BellerophonManager, event: BellerophonEvent)
 
     @objc optional
     /**
      Indicates that Bellerophon is about to disappear from the screen.
 
      - parameter manager: The Bellerophon manager.
+     - parameter event: BellerophonEvent that will disengage
      */
-    func bellerophonWillDisengage(_ manager: BellerophonManager)
+    func bellerophonWillDisengage(_ manager: BellerophonManager, event: BellerophonEvent)
     
 }

@@ -11,6 +11,11 @@ import XCTest
 
 class BellerophonTests: XCTestCase {
 
+    lazy var mockManager = MockBPManager(config: BellerophonConfig(window: UIWindow(),
+                                                                            killSwitchView: UIView(),
+                                                                            forceUpdateView: nil,
+                                                                            delegate: self))
+
     enum ResponseCases: Int {
         case KillSwitchOffForceUpdateOff = 0b00
         case KillSwitchOffForceUpdateOn = 0b01
@@ -37,19 +42,16 @@ class BellerophonTests: XCTestCase {
             interval: Double(ResponseCases.KillSwitchOnForceUpdateOff.rawValue), userMessageStr: "Only killSwitch is turned on"))
         responseArray.append(BellerophonResponse(isAPIInactive: true, shouldForceUpdate: true,
             interval: Double(ResponseCases.KillSwitchOnForceUpdateOn.rawValue), userMessageStr: "Both killSwitch and forceUpdate are turned on"))
-        
-        MockBPManager.mockSharedInstance.delegate = self
-        MockBPManager.mockSharedInstance.killSwitchView = UIView()
+
 
         shouldForceUpdateIsCalled = false
         
-        MockBPManager.mockSharedInstance.displayKillSwitchIsCalled = false
-        MockBPManager.mockSharedInstance.dismissKillSwitchIfNeededIsCalled = false
-        MockBPManager.mockSharedInstance.startAutoCheckingIsCalled = false
+        mockManager.displayKillSwitchIsCalled = false
+        mockManager.dismissKillSwitchIfNeededIsCalled = false
+        mockManager.startAutoCheckingIsCalled = false
     }
     
     override func tearDown() {
-        MockBPManager.mockSharedInstance.delegate = nil
 
         super.tearDown()
     }
@@ -59,11 +61,11 @@ class BellerophonTests: XCTestCase {
         currentIdx = ResponseCases.KillSwitchOffForceUpdateOff.rawValue
         
         // when
-        MockBPManager.mockSharedInstance.checkAppStatus()
+        mockManager.checkAppStatus()
 
         // then
-        XCTAssertFalse(MockBPManager.mockSharedInstance.displayKillSwitchIsCalled, "Internal func displayKillSwitch should not be called")
-        XCTAssertFalse(MockBPManager.mockSharedInstance.startAutoCheckingIsCalled, "Internal func startAutoCheckingIsCalled should not be called")
+        XCTAssertFalse(mockManager.displayKillSwitchIsCalled, "Internal func displayKillSwitch should not be called")
+        XCTAssertFalse(mockManager.startAutoCheckingIsCalled, "Internal func startAutoCheckingIsCalled should not be called")
         XCTAssertFalse(shouldForceUpdateIsCalled, "shouldForceUpdate should not be called")
     }
 
@@ -72,12 +74,12 @@ class BellerophonTests: XCTestCase {
         currentIdx = ResponseCases.KillSwitchOffForceUpdateOn.rawValue
         
         // when
-        MockBPManager.mockSharedInstance.checkAppStatus()
+        mockManager.checkAppStatus()
 
         // then
-        XCTAssertFalse(MockBPManager.mockSharedInstance.displayKillSwitchIsCalled, "Internal func displayKillSwitch should not be called")
-        XCTAssertFalse(MockBPManager.mockSharedInstance.startAutoCheckingIsCalled, "Internal func startAutoCheckingIsCalled should not be called")
-        XCTAssertTrue(shouldForceUpdateIsCalled, "The delegate method shouldForceUpdate should be called")
+        XCTAssertFalse(mockManager.displayKillSwitchIsCalled, "Internal func displayWindowIfPossible for killswitch should not be called")
+        XCTAssertTrue(mockManager.startAutoCheckingIsCalled, "Internal func startAutoCheckingIsCalled should not be called")
+        XCTAssertTrue(mockManager.displayForceUpdateIsCalled, "displayForceUpdateIsCalled should be enabled")
     }
 
     func test_checkAppStatus_withResponseOfKillSwitchOnForceUpdateOff() {
@@ -85,12 +87,12 @@ class BellerophonTests: XCTestCase {
         currentIdx = ResponseCases.KillSwitchOnForceUpdateOff.rawValue
         
         // when
-        MockBPManager.mockSharedInstance.checkAppStatus()
+        mockManager.checkAppStatus()
 
         // then
-        XCTAssertTrue(MockBPManager.mockSharedInstance.displayKillSwitchIsCalled, "Internal func displayKillSwitch should be called")
-        XCTAssertTrue(MockBPManager.mockSharedInstance.startAutoCheckingIsCalled, "Internal func startAutoCheckingIsCalled should be called")
-        XCTAssertFalse(shouldForceUpdateIsCalled, "The delegate method shouldForceUpdate should not be called")
+        XCTAssertTrue(mockManager.displayKillSwitchIsCalled, "Internal func displayWindowIfPossible for killswitch should be called")
+        XCTAssertTrue(mockManager.startAutoCheckingIsCalled, "Internal func startAutoCheckingIsCalled should be called")
+        XCTAssertFalse(mockManager.displayForceUpdateIsCalled, "Internal func displayWindowIfPossible for forceupdate should not be called")
     }
 
     func test_checkAppStatus_withResponseOfKillSwitchOnForceUpdateOn() {
@@ -98,28 +100,28 @@ class BellerophonTests: XCTestCase {
         currentIdx = ResponseCases.KillSwitchOnForceUpdateOn.rawValue
         
         // when
-        MockBPManager.mockSharedInstance.checkAppStatus()
+        mockManager.checkAppStatus()
 
         // then
-        XCTAssertFalse(MockBPManager.mockSharedInstance.displayKillSwitchIsCalled, "Internal func displayKillSwitch should not be called")
-        XCTAssertFalse(MockBPManager.mockSharedInstance.startAutoCheckingIsCalled, "Internal func startAutoCheckingIsCalled should not be called")
+        XCTAssertFalse(mockManager.displayKillSwitchIsCalled, "Internal func displayWindowIfPossible for killswitch should not be called")
+        XCTAssertTrue(mockManager.startAutoCheckingIsCalled, "Internal func startAutoCheckingIsCalled should not be called")
         // Notice that if both of killSwitch and forceUpdate are on, only forceUpdate is called
-        XCTAssertTrue(shouldForceUpdateIsCalled, "The delegate method shouldForceUpdate should be called")
+        XCTAssertTrue(mockManager.displayForceUpdateIsCalled, "Internal func displayWindowIfPossible for force update should be called")
     }
 
     func test_dismissKillSwitchView() {
         // given
         // Turn on kill switch first
         currentIdx = ResponseCases.KillSwitchOnForceUpdateOff.rawValue
-        MockBPManager.mockSharedInstance.checkAppStatus()
+        mockManager.checkAppStatus()
         
         // when
         // Turn off kill switch after
         currentIdx = ResponseCases.KillSwitchOffForceUpdateOff.rawValue
-        MockBPManager.mockSharedInstance.checkAppStatus()
+        mockManager.checkAppStatus()
 
         // then
-        XCTAssertTrue(MockBPManager.mockSharedInstance.dismissKillSwitchIfNeededIsCalled, "Internal func dismissKillSwitchIfNeededIsCalled should be called")
+        XCTAssertTrue(mockManager.dismissKillSwitchIfNeededIsCalled, "Internal func dismissKillSwitchIfNeededIsCalled should be called")
     }
 
 }
