@@ -6,13 +6,22 @@
 //
 
 /// Different types of events for Bellerophon
-@objc
-public enum BellerophonEvent: Int {
+public enum BellerophonEvent {
 
     /// Kill Switch
-    case killSwitch
+    case killSwitch(view: UIView)
 
     /// Force Update
-    case forceUpdate
+    case forceUpdate(view: UIView)
+
+    /// UIView associated with event case
+    var view: UIView {
+        switch self {
+        case .forceUpdate(view: let forceUpdateView):
+            return forceUpdateView
+        case .killSwitch(view: let killSwitchView):
+            return killSwitchView
+        }
+    }
 
 }

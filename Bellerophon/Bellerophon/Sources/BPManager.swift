@@ -106,12 +106,16 @@ public class BellerophonManager: NSObject {
 
     internal func handleAppStatus(_ status: BellerophonObservable) {
         if status.forceUpdate() {
-            displayWindowIfPossible(for: .forceUpdate)
-            config.delegate?.shouldForceUpdate?()
+            if let forceUpdateView = config.forceUpdateView {
+                displayWindow(for: .forceUpdate(view: forceUpdateView))
+            }
+            config.delegate?.shouldForceUpdate()
             startAutoChecking(status)
         } else if status.apiInactive() {
-            displayWindowIfPossible(for: .killSwitch)
-            config.delegate?.shouldForceUpdate?()
+            if let killSwitchView = config.killSwitchView {
+                displayWindow(for: .killSwitch(view: killSwitchView))
+            }
+            config.delegate?.shouldKillSwitch()
             startAutoChecking(status)
         } else {
             dismissKillSwitchIfNeeded()
@@ -127,32 +131,21 @@ public class BellerophonManager: NSObject {
         config.delegate?.receivedError(error: error)
     }
 
-    internal func displayWindowIfPossible(for event: BellerophonEvent) {
-        guard config.containsView(), let view = view(for: event) else {
-            return
-        }
+    internal func displayWindow(for event: BellerophonEvent) {
+        let view = event.view
         currentEvent = event
         view.frame = bellerophonWindow.bounds
         config.allViews().forEach { $0.isHidden = true }
         view.isHidden = false
-        config.delegate?.bellerophonWillEngage?(self, event: event)
+        config.delegate?.bellerophonWillEngage(self, event: event)
         bellerophonWindow.makeKeyAndVisible()
-    }
-
-    internal func view(for event: BellerophonEvent) -> UIView? {
-        switch event {
-        case .forceUpdate:
-            return config.forceUpdateView
-        case .killSwitch:
-            return config.killSwitchView
-        }
     }
 
     internal func dismissKillSwitchIfNeeded() {
         guard bellerophonWindow.isKeyWindow, let currentEvent = currentEvent else {
             return
         }
-        config.delegate?.bellerophonWillDisengage?(self, event: currentEvent)
+        config.delegate?.bellerophonWillDisengage(self, event: currentEvent)
         config.allViews().forEach { $0.isHidden = true }
         mainWindow?.makeKeyAndVisible()
         bellerophonWindow.isHidden = true

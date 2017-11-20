@@ -7,11 +7,14 @@
 
 import UIKit
 
-/// Configuration for Bellerophon
+/// Allows customization settings for Bellerophon.
+/// If killSwitchView is nil, no kill switch view will be displayed.
+/// If forceUpdateView is nil, no force update view will be displayed.
+/// BellerophonManagerDelegate contains required and optional methods
 public struct BellerophonConfig {
 
     /// The root window
-    public var window: UIWindow
+    public weak var window: UIWindow?
 
     /// View to be shown when the kill switch is turned on. Must be set by the application using Bellerophon
     public var killSwitchView: UIView?
@@ -29,19 +32,15 @@ public struct BellerophonConfig {
     ///   - window: Root UIWindow
     ///   - killSwitchView: UIView to display when kill switch is triggered. If nil, no view will be shown for kill switch event.
     ///   - forceUpdateView: UIView to display when force update is triggered. If nil, no view will be shown for force update event.
-    ///   - delegate: `BellerophonManagerDelegate` with optional callbacks.
-    public init(window: UIWindow, killSwitchView: UIView?, forceUpdateView: UIView?, delegate: BellerophonManagerDelegate?) {
+    ///   - delegate: `BellerophonManagerDelegate` with required and optional callbacks.
+    public init(window: UIWindow,
+                killSwitchView: UIView? = nil,
+                forceUpdateView: UIView? = nil,
+                delegate: BellerophonManagerDelegate) {
         self.window = window
         self.killSwitchView = killSwitchView
         self.forceUpdateView = forceUpdateView
         self.delegate = delegate
-    }
-
-    /// Determines if the config contains at least one view
-    ///
-    /// - Returns: True if the config contains at least one view
-    internal func containsView() -> Bool {
-        return [killSwitchView, forceUpdateView].flatMap ({ $0 }).count > 0
     }
 
     /// Returns list of all views who are not optional

@@ -7,36 +7,34 @@
 //
 
 /// The Bellerophon manager delegate.
-@objc public protocol BellerophonManagerDelegate {
+public protocol BellerophonManagerDelegate: class {
 
+    // MARK: - Required
     /**
      Provide Bellerophon's current status according to the status object received
 
      - parameter manager:    The Bellerophon manager.
      - parameter completion: The completion block.
      */
-    func bellerophonStatus(_ manager: BellerophonManager,
-                           completion: @escaping (_ status: BellerophonObservable?,
-        _ error: NSError?) -> ())
+    func bellerophonStatus(_ manager: BellerophonManager, completion: @escaping (_ status: BellerophonObservable?, _ error: NSError?) -> ())
 
-    @objc optional
-    /**
-     The app is notified that a force update should occur. An alert should be displayed to redirect to the App Store.
-     */
-    func shouldForceUpdate()
 
-    @objc optional
-    /**
-     The app is notified that a kill switch should occur.
-     */
-    func shouldKillSwitch()
-
+    // MARK: - Optional
     /// The app is notified when a error was received.
     ///
     /// - Parameter error: The error received.
     func receivedError(error: NSError)
 
-    @objc optional
+    /**
+     The app is notified that a force update should occur. An alert should be displayed to redirect to the App Store.
+     */
+    func shouldForceUpdate()
+
+    /**
+     The app is notified that a kill switch should occur.
+     */
+    func shouldKillSwitch()
+
     /**
      Indicates that Bellerophon is about to appear on the screen.
 
@@ -45,7 +43,6 @@
      */
     func bellerophonWillEngage(_ manager: BellerophonManager, event: BellerophonEvent)
 
-    @objc optional
     /**
      Indicates that Bellerophon is about to disappear from the screen.
 
@@ -54,4 +51,12 @@
      */
     func bellerophonWillDisengage(_ manager: BellerophonManager, event: BellerophonEvent)
     
+}
+
+public extension BellerophonManagerDelegate {
+    func receivedError(error: NSError) { }
+    func shouldForceUpdate() { }
+    func shouldKillSwitch() { }
+    func bellerophonWillEngage(_ manager: BellerophonManager, event: BellerophonEvent) { }
+    func bellerophonWillDisengage(_ manager: BellerophonManager, event: BellerophonEvent) { }
 }

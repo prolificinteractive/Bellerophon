@@ -56,6 +56,31 @@ class BellerophonTests: XCTestCase {
         super.tearDown()
     }
 
+    func testConfigForceUpdateInitalization() {
+        let window = UIWindow()
+        let forceUpdateView = UIView()
+        let testForceUpdateManager = MockBPManager(config: BellerophonConfig(window: window,
+                                                                  killSwitchView: nil,
+                                                                  forceUpdateView: forceUpdateView,
+                                                                  delegate: nil))
+        XCTAssertEqual(testForceUpdateManager.config.window, window)
+        XCTAssertNil(testForceUpdateManager.config.killSwitchView)
+        XCTAssertEqual(testForceUpdateManager.config.forceUpdateView, forceUpdateView)
+        XCTAssertEqual(testForceUpdateManager.config.allViews().count, 1)
+    }
+
+    func testConfigNilInitalization() {
+        let window = UIWindow()
+        let testForceUpdateManager = MockBPManager(config: BellerophonConfig(window: window,
+                                                                             killSwitchView: nil,
+                                                                             forceUpdateView: nil,
+                                                                             delegate: nil))
+        XCTAssertEqual(testForceUpdateManager.config.window, window)
+        XCTAssertNil(testForceUpdateManager.config.killSwitchView)
+        XCTAssertNil(testForceUpdateManager.config.forceUpdateView)
+        XCTAssertEqual(testForceUpdateManager.config.allViews().count, 0)
+    }
+
     func test_checkAppStatus_withResponseOfKillSwitchOffForceUpdateOff() {
         // given
         currentIdx = ResponseCases.KillSwitchOffForceUpdateOff.rawValue
@@ -66,6 +91,7 @@ class BellerophonTests: XCTestCase {
         // then
         XCTAssertFalse(mockManager.displayKillSwitchIsCalled, "Internal func displayKillSwitch should not be called")
         XCTAssertFalse(mockManager.startAutoCheckingIsCalled, "Internal func startAutoCheckingIsCalled should not be called")
+        XCTAssertFalse(shouldForceUpdateIsCalled, "shouldForceUpdate should not be called")
         XCTAssertFalse(shouldForceUpdateIsCalled, "shouldForceUpdate should not be called")
     }
 
@@ -79,7 +105,6 @@ class BellerophonTests: XCTestCase {
         // then
         XCTAssertFalse(mockManager.displayKillSwitchIsCalled, "Internal func displayWindowIfPossible for killswitch should not be called")
         XCTAssertTrue(mockManager.startAutoCheckingIsCalled, "Internal func startAutoCheckingIsCalled should not be called")
-        XCTAssertTrue(mockManager.displayForceUpdateIsCalled, "displayForceUpdateIsCalled should be enabled")
     }
 
     func test_checkAppStatus_withResponseOfKillSwitchOnForceUpdateOff() {
@@ -105,8 +130,6 @@ class BellerophonTests: XCTestCase {
         // then
         XCTAssertFalse(mockManager.displayKillSwitchIsCalled, "Internal func displayWindowIfPossible for killswitch should not be called")
         XCTAssertTrue(mockManager.startAutoCheckingIsCalled, "Internal func startAutoCheckingIsCalled should not be called")
-        // Notice that if both of killSwitch and forceUpdate are on, only forceUpdate is called
-        XCTAssertTrue(mockManager.displayForceUpdateIsCalled, "Internal func displayWindowIfPossible for force update should be called")
     }
 
     func test_dismissKillSwitchView() {
@@ -128,7 +151,8 @@ class BellerophonTests: XCTestCase {
 
 extension BellerophonTests: BellerophonManagerDelegate {
 
-    func bellerophonStatus(_ manager: BellerophonManager, completion: @escaping (BellerophonObservable?, NSError?) -> ()) {
+    func bellerophonStatus(_ manager: BellerophonManager,
+                           completion: @escaping (_ status: BellerophonObservable?, _ error: NSError?) -> ()) {
         completion(responseArray[currentIdx], nil)
     }
 
