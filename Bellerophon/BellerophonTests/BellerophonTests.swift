@@ -26,6 +26,7 @@ class BellerophonTests: XCTestCase {
     var responseArray: [BellerophonResponse]!
 
     var shouldForceUpdateIsCalled: Bool!
+    var shouldKillSwitchIsCalled: Bool!
 
     var currentIdx: Int = 0
 
@@ -45,6 +46,7 @@ class BellerophonTests: XCTestCase {
 
 
         shouldForceUpdateIsCalled = false
+        shouldKillSwitchIsCalled = false
         
         mockManager.displayKillSwitchIsCalled = false
         mockManager.dismissKillSwitchIfNeededIsCalled = false
@@ -62,11 +64,12 @@ class BellerophonTests: XCTestCase {
         let testForceUpdateManager = MockBPManager(config: BellerophonConfig(window: window,
                                                                   killSwitchView: nil,
                                                                   forceUpdateView: forceUpdateView,
-                                                                  delegate: nil))
+                                                                  delegate: self))
         XCTAssertEqual(testForceUpdateManager.config.window, window)
         XCTAssertNil(testForceUpdateManager.config.killSwitchView)
         XCTAssertEqual(testForceUpdateManager.config.forceUpdateView, forceUpdateView)
         XCTAssertEqual(testForceUpdateManager.config.allViews().count, 1)
+        XCTAssertFalse(shouldKillSwitchIsCalled)
     }
 
     func testConfigNilInitalization() {
@@ -74,11 +77,12 @@ class BellerophonTests: XCTestCase {
         let testForceUpdateManager = MockBPManager(config: BellerophonConfig(window: window,
                                                                              killSwitchView: nil,
                                                                              forceUpdateView: nil,
-                                                                             delegate: nil))
+                                                                             delegate: self))
         XCTAssertEqual(testForceUpdateManager.config.window, window)
         XCTAssertNil(testForceUpdateManager.config.killSwitchView)
         XCTAssertNil(testForceUpdateManager.config.forceUpdateView)
         XCTAssertEqual(testForceUpdateManager.config.allViews().count, 0)
+        XCTAssertFalse(shouldKillSwitchIsCalled)
     }
 
     func test_checkAppStatus_withResponseOfKillSwitchOffForceUpdateOff() {
@@ -93,6 +97,7 @@ class BellerophonTests: XCTestCase {
         XCTAssertFalse(mockManager.startAutoCheckingIsCalled, "Internal func startAutoCheckingIsCalled should not be called")
         XCTAssertFalse(shouldForceUpdateIsCalled, "shouldForceUpdate should not be called")
         XCTAssertFalse(shouldForceUpdateIsCalled, "shouldForceUpdate should not be called")
+        XCTAssertFalse(shouldKillSwitchIsCalled)
     }
 
     func test_checkAppStatus_withResponseOfKillSwitchOffForceUpdateOn() {
@@ -105,6 +110,7 @@ class BellerophonTests: XCTestCase {
         // then
         XCTAssertFalse(mockManager.displayKillSwitchIsCalled, "Internal func displayWindowIfPossible for killswitch should not be called")
         XCTAssertTrue(mockManager.startAutoCheckingIsCalled, "Internal func startAutoCheckingIsCalled should not be called")
+        XCTAssertFalse(shouldKillSwitchIsCalled)
     }
 
     func test_checkAppStatus_withResponseOfKillSwitchOnForceUpdateOff() {
@@ -118,6 +124,7 @@ class BellerophonTests: XCTestCase {
         XCTAssertTrue(mockManager.displayKillSwitchIsCalled, "Internal func displayWindowIfPossible for killswitch should be called")
         XCTAssertTrue(mockManager.startAutoCheckingIsCalled, "Internal func startAutoCheckingIsCalled should be called")
         XCTAssertFalse(mockManager.displayForceUpdateIsCalled, "Internal func displayWindowIfPossible for forceupdate should not be called")
+        XCTAssertTrue(shouldKillSwitchIsCalled)
     }
 
     func test_checkAppStatus_withResponseOfKillSwitchOnForceUpdateOn() {
@@ -145,6 +152,7 @@ class BellerophonTests: XCTestCase {
 
         // then
         XCTAssertTrue(mockManager.dismissKillSwitchIfNeededIsCalled, "Internal func dismissKillSwitchIfNeededIsCalled should be called")
+        XCTAssertTrue(shouldKillSwitchIsCalled)
     }
 
 }
@@ -162,5 +170,9 @@ extension BellerophonTests: BellerophonManagerDelegate {
 
     func receivedError(error: NSError) {
 
+    }
+
+    func shouldKillSwitch() {
+        shouldKillSwitchIsCalled = true
     }
 }
