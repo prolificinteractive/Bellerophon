@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegat
     }
 
     public func bellerophonStatus(_ manager: BellerophonManager,
-                                  completion: @escaping (BellerophonObservable?, NSError?) -> ()) {
+                                  completion: @escaping (BellerophonObservable?, Error?) -> ()) {
         // MAKE API CALL
         Alamofire.request(urlList[currentURLIndex],
                           method: .get,
@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegat
                 if let json = response.result.value as? JSON {
                     let model = BellerophonModel(json: json)
                     completion(model, nil)
-                } else if let error = response.result.error as NSError? {
+                } else if let error = response.result.error {
                     completion(nil, error)
                 }
         }

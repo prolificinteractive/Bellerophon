@@ -49,7 +49,6 @@ public class BellerophonManager: NSObject {
     private weak var mainWindow: UIWindow?
     internal let config: BellerophonConfig
     internal var currentEvent: BellerophonEvent?
-    internal var currentWindow: UIWindow?
 
     internal var requestPending = false
     internal var retryTimer: Timer?
@@ -127,7 +126,7 @@ public class BellerophonManager: NSObject {
         retryTimer = nil
     }
 
-    internal func handleError(error: NSError) {
+    internal func handleError(error: Error) {
         config.delegate?.receivedError(error: error)
     }
 

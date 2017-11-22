@@ -160,7 +160,7 @@ class BellerophonTests: XCTestCase {
 extension BellerophonTests: BellerophonManagerDelegate {
 
     func bellerophonStatus(_ manager: BellerophonManager,
-                           completion: @escaping (_ status: BellerophonObservable?, _ error: NSError?) -> ()) {
+                           completion: @escaping (_ status: BellerophonObservable?, _ error: Error?) -> ()) {
         completion(responseArray[currentIdx], nil)
     }
 
@@ -168,7 +168,7 @@ extension BellerophonTests: BellerophonManagerDelegate {
         shouldForceUpdateIsCalled = true
     }
 
-    func receivedError(error: NSError) {
+    func receivedError(error: Error) {
 
     }
 

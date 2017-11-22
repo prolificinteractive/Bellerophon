@@ -13,7 +13,7 @@ import UIKit
 /// BellerophonManagerDelegate contains required and optional methods
 public struct BellerophonConfig {
 
-    /// The root window
+    /// The root window of your application
     public weak var window: UIWindow?
 
     /// View to be shown when the kill switch is turned on. Must be set by the application using Bellerophon

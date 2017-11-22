@@ -7,8 +7,9 @@
 //
 
 /// The Bellerophon observable.
-@objc public protocol BellerophonObservable {
+public protocol BellerophonObservable {
 
+    // MARK: - Required
     /**
     Is the API is active or inactive?
 
@@ -37,12 +38,18 @@
     */
     func userMessage() -> String
 
-    @objc optional
+    // MARK: - Optional
     /**
     Set the user message to your custom view.
 
     - parameter message: The message to display.
     */
     func setUserMessage(_ message: String)
+
+}
+
+public extension BellerophonObservable {
+
+    func setUserMessage(_ message: String) { }
 
 }

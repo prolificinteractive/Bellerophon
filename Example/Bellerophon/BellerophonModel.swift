@@ -40,19 +40,19 @@ class BellerophonModel: BellerophonObservable {
         self.userMessageStr = userMessage
     }
 
-    @objc func apiInactive() -> Bool {
+    func apiInactive() -> Bool {
         return self.isAPIInactive
     }
 
-    @objc func forceUpdate() -> Bool {
+    func forceUpdate() -> Bool {
         return self.shouldForceUpdate
     }
 
-    @objc func retryInterval() -> TimeInterval {
+    func retryInterval() -> TimeInterval {
         return self.interval
     }
 
-    @objc func userMessage() -> String {
+    func userMessage() -> String {
         return self.userMessageStr
     }
 

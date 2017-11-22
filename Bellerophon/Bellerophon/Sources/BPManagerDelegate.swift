@@ -16,14 +16,14 @@ public protocol BellerophonManagerDelegate: class {
      - parameter manager:    The Bellerophon manager.
      - parameter completion: The completion block.
      */
-    func bellerophonStatus(_ manager: BellerophonManager, completion: @escaping (_ status: BellerophonObservable?, _ error: NSError?) -> ())
+    func bellerophonStatus(_ manager: BellerophonManager, completion: @escaping (_ status: BellerophonObservable?, _ error: Error?) -> ())
 
 
     // MARK: - Optional
     /// The app is notified when a error was received.
     ///
     /// - Parameter error: The error received.
-    func receivedError(error: NSError)
+    func receivedError(error: Error)
 
     /**
      The app is notified that a force update should occur. An alert should be displayed to redirect to the App Store.
@@ -54,7 +54,7 @@ public protocol BellerophonManagerDelegate: class {
 }
 
 public extension BellerophonManagerDelegate {
-    func receivedError(error: NSError) { }
+    func receivedError(error: Error) { }
     func shouldForceUpdate() { }
     func shouldKillSwitch() { }
     func bellerophonWillEngage(_ manager: BellerophonManager, event: BellerophonEvent) { }
