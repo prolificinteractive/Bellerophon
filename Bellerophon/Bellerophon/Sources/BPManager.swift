@@ -15,10 +15,11 @@ public class BellerophonManager: NSObject {
 
     /// The default initializer.
     ///
-    /// - Parameter window: The root window.
-    public init(window: UIWindow) {
+    /// - Parameter config: BellerophonConfig
+    public init(config: BellerophonConfig) {
+        self.config = config
         super.init()
-        mainWindow = window
+        mainWindow = config.window
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(stopTimer),
@@ -30,28 +31,24 @@ public class BellerophonManager: NSObject {
         NotificationCenter.default.removeObserver(self)
     }
 
-    // MARK: - Properties
-
-    /// View to be shown when the kill switch is turned on. Must be set by the application using Bellerophon
-    public var killSwitchView: UIView!
-
-    /// BellerophonManager delegate
-    public weak var delegate: BellerophonManagerDelegate?
-
     // MARK: internal properties
-
     /// The kill switch window.
-    internal lazy var killSwitchWindow: UIWindow = {
-        let window = BellerophonHelperMethods.newWindow()
+    internal lazy var bellerophonWindow: UIWindow = {
+        let window = UIWindow(frame: UIScreen.main.bounds)
         window.windowLevel = UIWindowLevelAlert
         let rootViewController = UIViewController()
-        rootViewController.view.addSubview(self.killSwitchView)
+        let viewList = [self.config.killSwitchView, self.config.forceUpdateView]
+        viewList.flatMap ({ $0 }).forEach {
+            $0.isHidden = true
+            rootViewController.view.addSubview($0)
+        }
         window.rootViewController = rootViewController
-
         return window
     }()
 
     private weak var mainWindow: UIWindow?
+    internal let config: BellerophonConfig
+    internal var currentEvent: BellerophonEvent?
 
     internal var requestPending = false
     internal var retryTimer: Timer?
@@ -62,8 +59,6 @@ public class BellerophonManager: NSObject {
      Retrieves and handles the app status from the AMS endpoint
      */
     @objc public func checkAppStatus() {
-        assert(killSwitchView != nil, "The kill switch view has to be defined.")
-
         guard !requestPending else {
             return
         }
@@ -71,7 +66,7 @@ public class BellerophonManager: NSObject {
         requestPending = true
         stopTimer()
 
-        delegate?.bellerophonStatus(self) { [weak self] status, error in
+        config.delegate?.bellerophonStatus(self) { [weak self] status, error in
             self?.requestPending = false
             if let status = status {
                 self?.handleAppStatus(status)
@@ -89,7 +84,7 @@ public class BellerophonManager: NSObject {
      - parameter completionHandler: Completion handler
      */
     public func fetchAppStatus(_ completionHandler: @escaping (_ result: UIBackgroundFetchResult) -> ()) {
-        delegate?.bellerophonStatus(self) { status, error in
+        config.delegate?.bellerophonStatus(self) { status, error in
             if let status = status {
                 self.handleAppStatus(status)
                 if status.apiInactive() {
@@ -110,9 +105,16 @@ public class BellerophonManager: NSObject {
 
     internal func handleAppStatus(_ status: BellerophonObservable) {
         if status.forceUpdate() {
-            performForceUpdate()
+            if let forceUpdateView = config.forceUpdateView {
+                displayWindow(for: .forceUpdate(view: forceUpdateView))
+            }
+            config.delegate?.shouldForceUpdate()
+            startAutoChecking(status)
         } else if status.apiInactive() {
-            displayKillSwitch()
+            if let killSwitchView = config.killSwitchView {
+                displayWindow(for: .killSwitch(view: killSwitchView))
+            }
+            config.delegate?.shouldKillSwitch()
             startAutoChecking(status)
         } else {
             dismissKillSwitchIfNeeded()
@@ -124,39 +126,37 @@ public class BellerophonManager: NSObject {
         retryTimer = nil
     }
 
-    internal func performForceUpdate() {
-        delegate?.shouldForceUpdate()
+    internal func handleError(error: Error) {
+        config.delegate?.receivedError(error: error)
     }
 
-    internal func handleError(error: NSError) {
-        delegate?.receivedError(error: error)
-    }
-
-    internal func displayKillSwitch() {
-        guard !killSwitchWindow.isKeyWindow else {
-            return
-        }
-
-        killSwitchView.frame = killSwitchWindow.bounds
-        delegate?.bellerophonWillEngage?(self)
-        killSwitchWindow.makeKeyAndVisible()
+    internal func displayWindow(for event: BellerophonEvent) {
+        let view = event.view
+        currentEvent = event
+        view.frame = bellerophonWindow.bounds
+        config.allViews().forEach { $0.isHidden = true }
+        view.isHidden = false
+        config.delegate?.bellerophonWillEngage(self, event: event)
+        bellerophonWindow.makeKeyAndVisible()
     }
 
     internal func dismissKillSwitchIfNeeded() {
-        guard killSwitchWindow.isKeyWindow else {
+        guard bellerophonWindow.isKeyWindow, let currentEvent = currentEvent else {
             return
         }
-
-        delegate?.bellerophonWillDisengage?(self)
+        config.delegate?.bellerophonWillDisengage(self, event: currentEvent)
+        config.allViews().forEach { $0.isHidden = true }
         mainWindow?.makeKeyAndVisible()
-        killSwitchWindow.isHidden = true
+        bellerophonWindow.isHidden = true
     }
 
     internal func startAutoChecking(_ status: BellerophonObservable) {
         if retryTimer == nil {
-            retryTimer = BellerophonHelperMethods.timerWithStatus(status,
-                                                                  target: self,
-                                                                  selector: #selector(BellerophonManager.checkAppStatus))
+            retryTimer =  Timer.scheduledTimer(timeInterval: status.retryInterval(),
+                                               target: self,
+                                               selector: #selector(checkAppStatus),
+                                               userInfo: nil,
+                                               repeats: false)
         }
     }
 }

@@ -13,7 +13,7 @@ Sometimes in a development phase, it happens for different reasons that the app 
 
 ## Description ##
 
-Bellerophon is a Swift implementation of a protocol and convenient methods that allow you to either kill your app or force the users to update using the App Store. By implementing Bellerophon, you will be able to easily add the logic to present a kill state view in your app, or force users to update.
+Bellerophon is a Swift implementation of a protocol and convenient methods that allow you to either kill your app or force the users to update using the App Store. By implementing Bellerophon, you will be able to easily add the logic to present a kill state view in your app, or force update view in your app.
 
 ## Requirements
 
@@ -46,12 +46,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegat
 }
 ```
 
-2 - Implement and configure the Bellerophon shared manager by setting the delegate property and the kill switch view.
+2 - Implement and configure BellerophonManager via BellerophonConfig. The configuration supports optional kill switch view, optional force update view, and many optional delegate methods. If a developer chooses to not supply a kill switch view nor a force update view
 
 ```swift
-let killSwitchManager = BellerophonManager(window: window)
-killSwitchManager.delegate = self
-killSwitchManager.killSwitchView = <YOUR_VIEW>
+let killSwitchView = <YOUR VIEW>
+let forceUpdateView = <YOUR VIEW>
+let config = BellerophonConfig(window: window, killSwitchView: killSwitchView, forceUpdateView: forceUpdateView, delegate: self)
 ```
 
 3 - Start the check the app status
@@ -114,7 +114,7 @@ func shouldForceUpdate() {
 }
 ```
 
-Your app is not ready to work with Bellerophon. If the status tells Bellerophon to kill the app, it will display a full screen view on top of everything and will keep it like that until the status API indicates that the app should work again. A timer is also starting based on the retry interval provided by the status object.
+Your app is not ready to work with Bellerophon. If the status tells Bellerophon to kill the app, it will display a full screen view on top of everything and will keep it like that until the status API indicates that the app should work again. A timer is also starting based on the retry interval provided by the status object. Similar behavior will occur for force update view.
 
 Your API and model should be able to indicate at least these informations :
 
@@ -157,7 +157,10 @@ Currently there is not an easy way to test Bellerophon. The best way is either t
 
 To report a bug or enhancement request, feel free to file an issue under the respective heading.
 
+Additionally, JSON responses for the test project are created via [myJSON](http://myjson.com/). You are welcome to create your own urls that contain any JSON for testing purposes.
+
 If you wish to contribute to the project, fork this repo and submit a pull request.
+project.
 
 ## License ##
 

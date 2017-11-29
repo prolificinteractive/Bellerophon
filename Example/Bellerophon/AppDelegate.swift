@@ -14,29 +14,33 @@ import Bellerophon
 class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegate {
 
     var window: UIWindow?
-    let killSwitchURL = "http://qa.cms.prolific.io/killswitch/status/vandelay/ios"
+    
+    let killSwitchURL = "https://api.myjson.com/bins/19bad7"
+    let forceUpdateURL = "https://api.myjson.com/bins/13f3h7"
+    let perfectApp = "https://api.myjson.com/bins/s3uzf"
+
+    var currentURLIndex = 0
+    lazy var urlList: [String] = {
+        return [self.killSwitchURL, self.forceUpdateURL, self.killSwitchURL, self.perfectApp]
+    }()
+
     private var killSwitchManager: BellerophonManager?
 
     func applicationDidFinishLaunching(_ application: UIApplication) {
-        let screenSize = UIScreen.main.bounds.size
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height))
+        let view = UIView(frame: UIScreen.main.bounds)
+        view.backgroundColor = .white
+        let view2 = UIView(frame: UIScreen.main.bounds)
+        view2.backgroundColor = .white
 
-        let imageView = UIImageView(frame: view.frame)
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "bellerophon.jpg")!
-        view.addSubview(imageView)
+        injetImageView(into: view, with: "bellerophon.jpg")
+        injectLabel(into: view, with: "Bummer! The App is currently unavailable check back in a little while.\nRetrying in 10 seconds...")
 
-        let label = UILabel(frame: view.frame)
-        label.font = UIFont.systemFont(ofSize: 15.0)
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.text = "Bummer! The App is currently unavailable check back in a little while."
-        view.addSubview(label)
+        injetImageView(into: view2, with: "bellerophon.jpg")
+        injectLabel(into: view2, with: "Force Update.\nRetrying in 10 seconds...")
 
         if let window = window {
-            killSwitchManager = BellerophonManager(window: window)
-            killSwitchManager?.delegate = self
-            killSwitchManager?.killSwitchView = view
+            let config = BellerophonConfig(window: window, killSwitchView: view, forceUpdateView: view2, delegate: self)
+            killSwitchManager = BellerophonManager(config: config)
             killSwitchManager?.checkAppStatus()
         }
     }
@@ -49,9 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegat
     }
 
     public func bellerophonStatus(_ manager: BellerophonManager,
-                                  completion: @escaping (BellerophonObservable?, NSError?) -> ()) {
+                                  completion: @escaping (BellerophonObservable?, Error?) -> ()) {
         // MAKE API CALL
-        Alamofire.request(killSwitchURL,
+        Alamofire.request(urlList[currentURLIndex],
                           method: .get,
                           parameters: nil,
                           encoding: JSONEncoding(),
@@ -60,28 +64,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BellerophonManagerDelegat
                 if let json = response.result.value as? JSON {
                     let model = BellerophonModel(json: json)
                     completion(model, nil)
-                } else if let error = response.result.error as NSError? {
+                } else if let error = response.result.error {
                     completion(nil, error)
                 }
         }
+        currentURLIndex += 1
     }
 
     func shouldForceUpdate() {
-        let alertController = UIAlertController(title: "Force Update",
-                                                message: "Force update message is received!",
-                                                preferredStyle: .alert)
-        let cancelButton = UIAlertAction(title: "Got it", style: .cancel, handler: nil)
-        alertController.addAction(cancelButton)
+        // Add any additional code after force update has been initiated
+    }
 
-        guard let rootViewController = window?.rootViewController else {
-            return
-        }
-
-        alertController.show(rootViewController, sender: nil)
+    func shouldKillSwitch() {
+        // Add any additional code after kill switch has been initiated
     }
 
     func receivedError(error: NSError) {
         // Handle error
+    }
+
+    func injectLabel(into view: UIView, with text: String) {
+        let label = UILabel(frame: view.frame)
+        label.font = UIFont.systemFont(ofSize: 15.0)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.text = text
+        view.addSubview(label)
+    }
+
+    func injetImageView(into view: UIView, with filename: String) {
+        let imageView = UIImageView(frame: view.frame)
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: filename)!
+        imageView.alpha = 0.5
+        view.addSubview(imageView)
     }
 
 }
