@@ -10,10 +10,6 @@
 
 class MockBPManager: BellerophonManager {
 
-    override var isDisplaying: Bool {
-        return true
-    }
-
     var displayKillSwitchIsCalled: Bool!
     var displayForceUpdateIsCalled: Bool!
     var startAutoCheckingIsCalled: Bool!

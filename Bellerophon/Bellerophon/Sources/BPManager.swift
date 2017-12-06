@@ -11,6 +11,7 @@ import UIKit
 /// The Bellerophon manager.
 public class BellerophonManager: NSObject {
     
+    /// Determines if the killswitch or force update view is presenting.
     public var isDisplaying: Bool {
         return bellerophonWindow.isKeyWindow
     }
@@ -183,4 +184,3 @@ public class BellerophonManager: NSObject {
     }
 
 }
-
