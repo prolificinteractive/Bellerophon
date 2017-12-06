@@ -86,6 +86,10 @@ class BellerophonModel: BellerophonObservable { }
 @objc func userMessage() -> String {
 	...
 }
+
+@objc func setUserMessage(_ message: String) {
+	...
+}
 ```
 
 6 - Now that you have your model, you are ready to implement the `BellerophonManagerDelegate` methods in your App Delegate.
