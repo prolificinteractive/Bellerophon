@@ -128,12 +128,8 @@ public class BellerophonManager: NSObject {
             }
         }
     }
-    
-}
 
 // MARK: Private Methods
-
-extension BellerophonManager {
     
     @objc internal func stopTimer() {
         retryTimer?.invalidate()
@@ -145,8 +141,11 @@ extension BellerophonManager {
     }
     
     internal func handleAppStatus(_ status: BellerophonObservable) {
-        self.updateDisplay(status)
-        self.startAutoChecking(status)
+        updateDisplay(status)
+        
+        if (status.forceUpdate() || status.apiInactive()) {
+            startAutoChecking(status)
+        }
     }
     
     internal func displayForceUpdate() {
@@ -174,14 +173,13 @@ extension BellerophonManager {
     }
     
     internal func startAutoChecking(_ status: BellerophonObservable) {
-        guard (status.forceUpdate() || status.apiInactive()) && retryTimer == nil else {
-            return
+        if retryTimer == nil {
+            retryTimer =  Timer.scheduledTimer(timeInterval: status.retryInterval(),
+                                               target: self,
+                                               selector: #selector(checkAppStatus),
+                                               userInfo: nil,
+                                               repeats: false)
         }
-        retryTimer =  Timer.scheduledTimer(timeInterval: status.retryInterval(),
-                                           target: self,
-                                           selector: #selector(checkAppStatus),
-                                           userInfo: nil,
-                                           repeats: false)
     }
     
 }
