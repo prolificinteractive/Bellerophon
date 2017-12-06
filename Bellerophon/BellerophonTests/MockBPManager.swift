@@ -9,12 +9,20 @@
 @testable import Bellerophon
 
 class MockBPManager: BellerophonManager {
-    
+
+    override var isDisplaying: Bool {
+        return true
+    }
+
     var displayKillSwitchIsCalled: Bool!
     var displayForceUpdateIsCalled: Bool!
     var startAutoCheckingIsCalled: Bool!
     var dismissKillSwitchIfNeededIsCalled: Bool!
-    
+
+    var displayForceUpdateFunctionIsCalled: Bool!
+    var displayKillSwitchFunctionIsCalled: Bool!
+    var updateDisplayIsCalled: Bool!
+
     override func displayWindow(for event: BellerophonEvent) {
         switch event {
         case .killSwitch:
@@ -25,6 +33,21 @@ class MockBPManager: BellerophonManager {
             displayKillSwitchIsCalled = false
         }
     }
+
+    override func updateDisplay(_ status: BellerophonObservable) {
+        updateDisplayIsCalled = true
+        super.updateDisplay(status)
+    }
+
+    override func displayForceUpdate() {
+        displayForceUpdateFunctionIsCalled = true
+        super.displayForceUpdate()
+    }
+
+    override func displayKillSwitch() {
+        displayKillSwitchFunctionIsCalled = true
+        super.displayKillSwitch()
+    }
     
     override func startAutoChecking(_ status: BellerophonObservable) {
         startAutoCheckingIsCalled = true
@@ -32,5 +55,6 @@ class MockBPManager: BellerophonManager {
     
     override func dismissKillSwitchIfNeeded() {
         dismissKillSwitchIfNeededIsCalled = true
+        super.dismissKillSwitchIfNeeded()
     }
 }
