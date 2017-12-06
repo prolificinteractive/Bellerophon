@@ -129,7 +129,7 @@ public class BellerophonManager: NSObject {
         }
     }
 
-// MARK: Private Methods
+// MARK: Internal Methods
     
     @objc internal func stopTimer() {
         retryTimer?.invalidate()
