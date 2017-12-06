@@ -58,7 +58,7 @@ public class BellerophonManager: NSObject {
     internal var retryTimer: Timer?
 
     // MARK: Public Methods
-    
+
     /**
      Retrieves and handles the app status from the AMS endpoint
      */
@@ -108,7 +108,7 @@ public class BellerophonManager: NSObject {
     
     /**
      Use this function to retrieve and handle app status when the app has background mode enabled.
-     
+
      - parameter completionHandler: Completion handler
      */
     public func fetchAppStatus(_ completionHandler: @escaping (_ result: UIBackgroundFetchResult) -> ()) {
