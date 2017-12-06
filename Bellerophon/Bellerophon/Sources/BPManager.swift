@@ -133,7 +133,7 @@ public class BellerophonManager: NSObject {
 
 // MARK: Private Methods
 
-private extension BellerophonManager {
+extension BellerophonManager {
     
     @objc internal func stopTimer() {
         retryTimer?.invalidate()
