@@ -8,7 +8,7 @@
 
 @testable import Bellerophon
 
-@objc public class BellerophonResponse: NSObject, BellerophonObservable {
+@objc class BellerophonResponse: NSObject, BellerophonObservable {
     
     init(isAPIInactive: Bool, shouldForceUpdate: Bool, interval: TimeInterval, userMessageStr: String) {
         self.isAPIInactive = isAPIInactive
