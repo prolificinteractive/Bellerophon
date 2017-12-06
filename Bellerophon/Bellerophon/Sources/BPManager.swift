@@ -74,7 +74,7 @@ public class BellerophonManager: NSObject {
         config.delegate?.bellerophonStatus(self) { [weak self] status, error in
             self?.requestPending = false
             if let status = status {
-                self?.updateDisplay(status)
+                self?.handleAppStatus(status)
             } else if let error = error {
                 self?.handleError(error: error)
             } else {
@@ -93,10 +93,6 @@ public class BellerophonManager: NSObject {
             displayKillSwitch()
         } else {
             dismissKillSwitchIfNeeded()
-        }
-
-        if (status.forceUpdate() || status.apiInactive()) {
-            startAutoChecking(status)
         }
     }
 
@@ -119,7 +115,7 @@ public class BellerophonManager: NSObject {
     public func fetchAppStatus(_ completionHandler: @escaping (_ result: UIBackgroundFetchResult) -> ()) {
         config.delegate?.bellerophonStatus(self) { status, error in
             if let status = status {
-                self.updateDisplay(status)
+                self.handleAppStatus(status)
                 if status.apiInactive() {
                     // If the kill switch or queue-it is still active we don't need to update anything
                     completionHandler(.noData)
@@ -143,6 +139,14 @@ public class BellerophonManager: NSObject {
 
     internal func handleError(error: Error) {
         config.delegate?.receivedError(error: error)
+    }
+
+    internal func handleAppStatus(_ status: BellerophonObservable) {
+        updateDisplay(status)
+        
+        if (status.forceUpdate() || status.apiInactive()) {
+            startAutoChecking(status)
+        }
     }
 
     internal func displayForceUpdate() {
