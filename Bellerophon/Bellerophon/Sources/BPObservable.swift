@@ -7,7 +7,7 @@
 //
 
 /// The Bellerophon observable.
-public protocol BellerophonObservable {
+@objc public protocol BellerophonObservable {
 
     // MARK: - Required
     /**
@@ -45,11 +45,5 @@ public protocol BellerophonObservable {
     - parameter message: The message to display.
     */
     func setUserMessage(_ message: String)
-
-}
-
-public extension BellerophonObservable {
-
-    func setUserMessage(_ message: String) { }
 
 }

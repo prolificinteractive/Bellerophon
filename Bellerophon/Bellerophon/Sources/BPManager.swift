@@ -10,7 +10,12 @@ import UIKit
 
 /// The Bellerophon manager.
 public class BellerophonManager: NSObject {
-
+    
+    /// Determines if the killswitch or force update view is presenting.
+    public var isDisplaying: Bool {
+        return bellerophonWindow.isKeyWindow
+    }
+    
     // MARK: - Initializers
 
     /// The default initializer.
@@ -78,6 +83,30 @@ public class BellerophonManager: NSObject {
         }
     }
 
+    /// Updates the display with the given status.
+    ///
+    /// - Parameter status: Kill switch status to check if the kill switch view should be displayed.
+    @objc public func updateDisplay(_ status: BellerophonObservable) {
+        if status.forceUpdate() {
+            displayForceUpdate()
+        } else if status.apiInactive() {
+            displayKillSwitch()
+        } else {
+            dismissKillSwitchIfNeeded()
+        }
+    }
+
+    /// Dismisses the kill switch window.
+    @objc public func dismissKillSwitchIfNeeded() {
+        guard isDisplaying, let currentEvent = currentEvent else {
+            return
+        }
+        config.delegate?.bellerophonWillDisengage(self, event: currentEvent)
+        config.allViews().forEach { $0.isHidden = true }
+        mainWindow?.makeKeyAndVisible()
+        bellerophonWindow.isHidden = true
+    }
+    
     /**
      Use this function to retrieve and handle app status when the app has background mode enabled.
 
@@ -101,25 +130,7 @@ public class BellerophonManager: NSObject {
         }
     }
 
-    // MARK: internal Methods
-
-    internal func handleAppStatus(_ status: BellerophonObservable) {
-        if status.forceUpdate() {
-            if let forceUpdateView = config.forceUpdateView {
-                displayWindow(for: .forceUpdate(view: forceUpdateView))
-            }
-            config.delegate?.shouldForceUpdate()
-            startAutoChecking(status)
-        } else if status.apiInactive() {
-            if let killSwitchView = config.killSwitchView {
-                displayWindow(for: .killSwitch(view: killSwitchView))
-            }
-            config.delegate?.shouldKillSwitch()
-            startAutoChecking(status)
-        } else {
-            dismissKillSwitchIfNeeded()
-        }
-    }
+// MARK: Internal Methods
 
     @objc internal func stopTimer() {
         retryTimer?.invalidate()
@@ -128,6 +139,28 @@ public class BellerophonManager: NSObject {
 
     internal func handleError(error: Error) {
         config.delegate?.receivedError(error: error)
+    }
+
+    internal func handleAppStatus(_ status: BellerophonObservable) {
+        updateDisplay(status)
+        
+        if (status.forceUpdate() || status.apiInactive()) {
+            startAutoChecking(status)
+        }
+    }
+
+    internal func displayForceUpdate() {
+        if let forceUpdateView = config.forceUpdateView {
+            displayWindow(for: .forceUpdate(view: forceUpdateView))
+        }
+        config.delegate?.shouldForceUpdate()
+    }
+
+    internal func displayKillSwitch() {
+        if let killSwitchView = config.killSwitchView {
+            displayWindow(for: .killSwitch(view: killSwitchView))
+        }
+        config.delegate?.shouldKillSwitch()
     }
 
     internal func displayWindow(for event: BellerophonEvent) {
@@ -140,16 +173,6 @@ public class BellerophonManager: NSObject {
         bellerophonWindow.makeKeyAndVisible()
     }
 
-    internal func dismissKillSwitchIfNeeded() {
-        guard bellerophonWindow.isKeyWindow, let currentEvent = currentEvent else {
-            return
-        }
-        config.delegate?.bellerophonWillDisengage(self, event: currentEvent)
-        config.allViews().forEach { $0.isHidden = true }
-        mainWindow?.makeKeyAndVisible()
-        bellerophonWindow.isHidden = true
-    }
-
     internal func startAutoChecking(_ status: BellerophonObservable) {
         if retryTimer == nil {
             retryTimer =  Timer.scheduledTimer(timeInterval: status.retryInterval(),
@@ -159,4 +182,5 @@ public class BellerophonManager: NSObject {
                                                repeats: false)
         }
     }
+
 }
