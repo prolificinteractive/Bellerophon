@@ -47,7 +47,7 @@ public struct BellerophonConfig {
     ///
     /// - Returns: List of UIViews that exist within config
     internal func allViews() -> [UIView] {
-        return [killSwitchView, forceUpdateView].flatMap ({ $0 })
+        return [killSwitchView, forceUpdateView].compactMap ({ $0 })
     }
 
 }

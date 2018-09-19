@@ -178,12 +178,12 @@
 					8EED59C71C40194500CB3223 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 5ZZ7W4SB26;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1000;
 					};
 					ABADBB921CCA92580057F491 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 5ZZ7W4SB26;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -368,6 +368,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.prolificinteractive.Bellerophon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -388,6 +389,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -401,6 +403,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.prolificinteractive.BellerophonTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -415,6 +418,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.prolificinteractive.BellerophonTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
