@@ -28,7 +28,7 @@ public class BellerophonManager: NSObject {
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(stopTimer),
-                                               name: NSNotification.Name.UIApplicationDidEnterBackground,
+                                               name: UIApplication.didEnterBackgroundNotification,
                                                object: nil)
     }
 
@@ -40,10 +40,10 @@ public class BellerophonManager: NSObject {
     /// The kill switch window.
     internal lazy var bellerophonWindow: UIWindow = {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.windowLevel = UIWindowLevelAlert
+        window.windowLevel = UIWindow.Level.alert
         let rootViewController = UIViewController()
         let viewList = [self.config.killSwitchView, self.config.forceUpdateView]
-        viewList.flatMap ({ $0 }).forEach {
+        viewList.compactMap ({ $0 }).forEach {
             $0.isHidden = true
             rootViewController.view.addSubview($0)
         }
