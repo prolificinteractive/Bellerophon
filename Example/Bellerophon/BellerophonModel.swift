@@ -17,11 +17,10 @@ typealias JSON = [String: Any]
 //    "userMessage": null
 //}
 class BellerophonModel: BellerophonObservable {
-
     let isAPIInactive: Bool
     let shouldForceUpdate: Bool
     let interval: TimeInterval
-    let userMessageStr: String
+    var userMessageStr: String
 
     required init?(json: JSON) {
         isAPIInactive = json["apiInactive"] as? Bool ?? false
@@ -54,6 +53,10 @@ class BellerophonModel: BellerophonObservable {
 
     func userMessage() -> String {
         return self.userMessageStr
+    }
+
+    func setUserMessage(_ message: String) {
+        userMessageStr = message
     }
 
 }
